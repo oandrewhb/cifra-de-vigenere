@@ -1,1 +1,30 @@
-<p>inicio works!</p>
+<div class="mb-4">
+    <div class="mb-4">
+        <label for="chave" class="form-label">Chave</label>
+        <input type="text" class="form-control" id="chave" [(ngModel)]="chave" required>
+        <div class="form-text">
+            <button (click)="gerarChaveAleatoria()" class="me-2">Gerar chave aleatória</button>
+            <button (click)="gerarChaveComPalavraAleatoria()">Gerar chave com palavra aleatória</button>
+        </div>
+    </div>
+    
+    <div class="mb-2">
+        <label for="texto" class="form-label">Texto</label>
+        <textarea class="form-control" id="texto" rows="5" [(ngModel)]="texto" required></textarea>
+        <p class="text-end">{{ texto.length > 0 ? texto.length : '' }}</p>
+    </div>
+    
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-primary me-2 mt-2" (click)="criptografar()" [disabled]="!chave.trim() || !texto.trim()">Criptografar</button>
+            <button type="button" class="btn btn-outline-primary me-2 mt-2" (click)="descriptografar()" [disabled]="!chave.trim() || !texto.trim()">Descriptografar</button>
+        </div>
+        <div class="col text-end">
+            <button type="button" class="btn btn-outline-secondary mt-2" (click)="limpar()">Limpar</button>
+        </div>
+    </div>
+</div>
+
+<text-block *ngIf="resultado != ''">
+    {{ resultado }}
+</text-block>

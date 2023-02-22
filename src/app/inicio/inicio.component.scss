@@ -1,0 +1,22 @@
+input#chave {
+    max-width: 400px;
+}
+
+div.form-text button {
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+    opacity: 0.5;
+    background: none;
+    border: none;
+    padding: 0px;
+}
+div.form-text button:hover {
+    opacity: 0.7;
+}
+
+p {
+    opacity: 0.5;
+    height: 12px;
+    padding-right: 5px;
+}

@@ -1,0 +1,21 @@
+<div class="container textBLock">
+    <div class="row position-relative">
+        <div class="col position-absolute text-end py-2">
+            <button
+                type="button"
+                class="btn btn-outline-primary btn-sm"
+                (click)="copyText()"
+                title="Copiar para área de transferência"
+            >
+            <i class="bi bi-heart"></i> Copiar
+            </button>
+        </div>
+    </div>
+    <div class="row content">
+        <div class="col">
+            <code id="ngContent">
+                <ng-content></ng-content>
+            </code>
+        </div>
+    </div>
+</div>

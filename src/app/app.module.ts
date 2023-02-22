@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { DocumentacaoComponent } from './documentacao/documentacao.component';
+import { FormsModule } from '@angular/forms';
+import { TextBlockComponent } from './text-block/text-block.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuPrincipalComponent,
     InicioComponent,
-    DocumentacaoComponent
+    DocumentacaoComponent,
+    TextBlockComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
