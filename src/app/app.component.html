@@ -1,4 +1,23 @@
-<app-menu-principal></app-menu-principal>
+<div class="container-fluid my-3">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Cifra de Vigenère</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mb-5">
+    <div class="row">
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page" routerLink="/">Início</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class]="currentRoute == '/documentacao' ? 'active' : ''" routerLink="/documentacao">Documentação</a>
+            </li>
+        </ul>
+    </div>
+</div>
 
 <div class="container">
     <div class="row">

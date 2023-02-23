@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { CifraDeVigenereService } from '../cifra/cifra-de-vigenere.service';
+import { CifraDeVigenereService } from '../../services/cifra-de-vigenete/cifra-de-vigenere.service';
 
 @Component({
   selector: 'app-inicio',
