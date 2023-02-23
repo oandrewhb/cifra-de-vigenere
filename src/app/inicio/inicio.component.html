@@ -1,10 +1,15 @@
 <div class="mb-4">
+
     <div class="mb-4">
         <label for="chave" class="form-label">Chave</label>
-        <input type="text" class="form-control" id="chave" [(ngModel)]="chave" required>
-        <div class="form-text">
-            <button (click)="gerarChaveAleatoria()" class="me-2">Gerar chave aleatória</button>
-            <button (click)="gerarChaveComPalavraAleatoria()">Gerar chave com palavra aleatória</button>
+        <div class="input-group">
+            <input type="text" class="form-control" id="chave" [(ngModel)]="chave" required>
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Gerar</button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><button class="dropdown-item" (click)="gerarChaveAleatoria()">Chave aleatória</button></li>
+                <li><button class="dropdown-item" (click)="gerarChaveComPalavraAleatoria()">Palavra aleatória</button></li>
+                <li><button class="dropdown-item" (click)="gerarChaveComFraseAleatoria()">Frase aleatória</button></li>
+            </ul>
         </div>
     </div>
     
