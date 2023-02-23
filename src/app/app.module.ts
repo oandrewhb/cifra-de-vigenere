@@ -8,6 +8,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { DocumentacaoComponent } from './documentacao/documentacao.component';
 import { FormsModule } from '@angular/forms';
 import { TextBlockComponent } from './text-block/text-block.component';
+import { TabelaVigenereComponent } from './tabela-vigenere/tabela-vigenere.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TextBlockComponent } from './text-block/text-block.component';
     MenuPrincipalComponent,
     InicioComponent,
     DocumentacaoComponent,
-    TextBlockComponent
+    TextBlockComponent,
+    TabelaVigenereComponent
   ],
   imports: [
     BrowserModule,

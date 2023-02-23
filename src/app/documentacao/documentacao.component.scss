@@ -1,0 +1,16 @@
+figure {
+    margin: 150px 0px;
+}
+
+h1 {
+    margin-top: 50px;
+}
+
+h1 > a {
+    text-decoration: none;
+    display: none;
+}
+
+h1:hover a {
+    display:inline-block;
+}
