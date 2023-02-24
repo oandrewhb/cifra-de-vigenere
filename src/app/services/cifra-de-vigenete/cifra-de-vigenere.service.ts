@@ -27,7 +27,7 @@ export class CifraDeVigenereService {
         continue;
       }
 
-      /* CIFRAR / DECIFRAR */
+      /* inicio - Cifrar e decifrar */
       const iAlfabetoMensagem = this.alfabetoParam.indexOf(mensagem[i]);
       const iAlfabetoChave = this.alfabetoParam.indexOf(chave[iChave]);
       let iCifrado:number;
@@ -38,7 +38,7 @@ export class CifraDeVigenereService {
       }
       const letraCifrada = this.alfabetoParam[iCifrado];
       resultado += letraCifrada;
-      /* fim CIFRAR / DECIFRAR */
+      /* fim - Cifrar e decifrar */
 
       iChave++
     }

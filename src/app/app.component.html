@@ -1,28 +1,47 @@
-<div class="container-fluid my-3">
-    <div class="row">
-        <div class="col text-center">
-            <h1>Cifra de Vigenère</h1>
+<!-- inicio - Menu principal -->
+<nav>
+    <div class="container-fluid my-3">
+        <div class="row">
+            <div class="col text-center">
+                <h1><i class="fa-solid fa-hashtag"></i> Cifra de Vigenère</h1>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="container-fluid mb-5">
-    <div class="row">
-        <ul class="nav nav-tabs justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page" routerLink="/">Início</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [class]="currentRoute == '/documentacao' ? 'active' : ''" routerLink="/documentacao">Documentação</a>
-            </li>
-        </ul>
+    
+    <div class="container-fluid mb-5">
+        <div class="row">
+            <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page" routerLink="/">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class]="currentRoute == '/documentacao' ? 'active' : ''" routerLink="/documentacao">Documentação</a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+</nav>
+<!-- fim - Menu principal -->
 
-<div class="container">
+<!-- inicio - Conteúdo -->
+<main class="container max-width-800">
     <div class="row">
         <div class="col">
             <router-outlet></router-outlet>
         </div>
     </div>
-</div>
+</main>
+<!-- fim - Conteúdo -->
+
+<!-- inicio - Rodapé -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <a href="https://github.com/andrewhermelino/cifra-de-vigenere" target="_blank" title="Repositório desse projeto"><i class="fa-brands fa-github"></i></a>
+                <p><a href="https://github.com/andrewhermelino" target="_blank" title="Meu perfil no Github">andrewhermelino</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- inicio - Rodapé -->

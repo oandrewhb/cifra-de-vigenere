@@ -1,3 +1,30 @@
-.container {
+.max-width-800 {
     max-width: 800px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    height: 200px;
+}
+
+
+footer i,
+footer p,
+footer a {
+    color: #000;
+    opacity: 0.8;
+    transition: .2s;
+}
+
+footer i {
+    font-size: 70px;
+}
+
+footer p {
+    margin: 12px 0px;
+}
+
+footer a:hover {
+    opacity: 1;
 }

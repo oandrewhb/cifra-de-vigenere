@@ -24,7 +24,7 @@ export class AppComponent {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
-        this.setPageTitle(this.pageTitles[event.url]);
+        this.setPageTitle(this.pageTitles[event.url] ?? "");
       }
     });
   }
