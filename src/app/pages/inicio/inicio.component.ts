@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { CifraDeVigenereService } from '../../services/cifra-de-vigenete/cifra-de-vigenere.service';
+import { copy } from 'clipboard';
 
 @Component({
   selector: 'app-inicio',
@@ -26,6 +27,10 @@ export class InicioComponent {
     this.resultado = this.cifraDeVigenere.decifrar(this.texto, this.chave);
   }
 
+  copiarChave():void {
+    copy(this.chave);
+  }
+
   limpar() {
     this.chave = "";
     this.texto = "";
@@ -33,8 +38,6 @@ export class InicioComponent {
   }
 
   gerarChaveAleatoria = ():void => {this.chave = _gerarChaveAleatoria()};
-  gerarChaveComPalavraAleatoria = ():void => {this.chave = _gerarChaveComPalavraAleatoria()};
-  gerarChaveComFraseAleatoria = ():void => {this.chave = _gerarChaveComFraseAleatoria()};
 }
 
 function _gerarChaveAleatoria():string {
@@ -48,12 +51,4 @@ function _gerarChaveAleatoria():string {
   }
 
   return chave;
-}
-
-function _gerarChaveComPalavraAleatoria():string {
-  return "Limão";
-}
-
-function _gerarChaveComFraseAleatoria():string {
-  return "Minha pizza queimou no forno";
 }

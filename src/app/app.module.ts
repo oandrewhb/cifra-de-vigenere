@@ -15,7 +15,7 @@ import { TabelaVigenereComponent } from './components/tabela-vigenere/tabela-vig
     InicioComponent,
     DocumentacaoComponent,
     TextBlockComponent,
-    TabelaVigenereComponent
+    TabelaVigenereComponent,
   ],
   imports: [
     BrowserModule,

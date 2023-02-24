@@ -9,14 +9,9 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'cifra-de-vigenere';
+  title = 'Cifra De Vigenère';
 
   currentRoute: string = "";
-
-  pageTitles: {[key: string]: string} = {
-    "/": "",
-    "/documentacao": "Documentação"
-  };
 
   constructor(private router: Router, private titleService: Title) { }
 
@@ -24,19 +19,30 @@ export class AppComponent {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
-        this.setPageTitle(this.pageTitles[event.url] ?? "");
+
+        if (this.currentRoute.includes('/documentacao')) {
+          this.titleService.setTitle(`${this.title} | Documentação`);
+        } else {
+          this.titleService.setTitle(this.title);
+        }
+
+        if (this.currentRoute.includes('#')) {
+          const topico: string = this.currentRoute.split('#')[1] ?? '';
+
+          const topicoFormatado: {[key: string]: string} = {
+            'oque-e-a-cifra-de-vigenere': ' - Oque é a cifra de Vigenère',
+            'a-cifra-de-cesar': ' - A cifra de Vigenère',
+            'cifra-de-vigenere-na-pratica': ' - Cifra de Vigenère na prática',
+            'quem-foi-vigenere': ' - Quem foi Vigenère',
+            '': '',
+          };
+
+          this.titleService.setTitle(this.titleService.getTitle() + topicoFormatado[topico]);
+
+        }
+
       }
     });
   }
 
-  setPageTitle(title: string): void {
-    const mainTitle: string = "Cifra De Vigenère"
-
-    if (title.trim() != "") {
-      this.titleService.setTitle(`${mainTitle} | ${title}`)
-      return
-    }
-
-    this.titleService.setTitle(mainTitle)
-  }
 }
