@@ -1,19 +1,31 @@
 <div class="container textBLock">
-    <div class="row position-relative">
-        <div class="col position-absolute text-end py-2">
-            <button
-                type="button"
-                class="btn btn-outline-primary btn-sm"
-                (click)="copyText()"
-                title="Copiar para área de transferência"
-            >
-            <i class="fa-regular fa-clipboard"></i> Copiar
-            </button>
+    <div class="row">
+        <div class="col text-end py-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col p-0 text-start">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="quebrarLinha" [(ngModel)]="quebrarLinha">
+                            <label class="form-check-label" for="quebrarLinha">Quebrar linha</label>
+                        </div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <button
+                            type="button"
+                            class="btn btn-outline-primary btn-sm"
+                            (click)="copyText()"
+                            title="Copiar para área de transferência"
+                        >
+                        <i class="fa-regular fa-clipboard"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row content">
         <div class="col">
-            <pre id="ngContent">
+            <pre id="ngContent" [ngClass]="{'pre-wrap': quebrarLinha}">
 {{ content }}
             </pre>
         </div>

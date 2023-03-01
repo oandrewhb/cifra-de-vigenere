@@ -10,6 +10,7 @@ import { copy } from 'clipboard';
 export class TextBlockComponent {
 
   @Input() content: string = "";
+  quebrarLinha: boolean = true;
 
   copyText() {
     copy(this.content);

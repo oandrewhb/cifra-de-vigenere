@@ -3,9 +3,14 @@
 }
 
 .row.content {
-    padding: 42px 0px;
+    border-top: 1px solid #dddddd;
+    padding-top: 12px;
 }
 
 #ngContent {
     color: #000000;
+}
+
+.pre-wrap {
+    white-space: pre-wrap;
 }
