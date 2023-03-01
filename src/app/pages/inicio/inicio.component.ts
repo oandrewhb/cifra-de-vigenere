@@ -14,6 +14,9 @@ export class InicioComponent {
   texto: string = "";
   resultado: string = "";
 
+  modoArray = ['Simples', 'Completa'];
+  modoSelecionado: string = this.modoArray[0];
+
   cifraDeVigenere: CifraDeVigenereService;
 
   constructor (cifraDeVigenere: CifraDeVigenereService) {
@@ -21,10 +24,10 @@ export class InicioComponent {
   }
 
   criptografar():void {
-    this.resultado = this.cifraDeVigenere.cifrar(this.texto, this.chave);
+    this.resultado = this.cifraDeVigenere.cifrar(this.texto, this.chave, this.modoSelecionado);
   }
   descriptografar():void {
-    this.resultado = this.cifraDeVigenere.decifrar(this.texto, this.chave);
+    this.resultado = this.cifraDeVigenere.decifrar(this.texto, this.chave, this.modoSelecionado);
   }
 
   copiarChave():void {
@@ -35,6 +38,7 @@ export class InicioComponent {
     this.chave = "";
     this.texto = "";
     this.resultado = "";
+    this.modoSelecionado = this.modoArray[0]
   }
 
   gerarChaveAleatoria = ():void => {this.chave = _gerarChaveAleatoria()};

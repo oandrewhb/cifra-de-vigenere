@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, Input  } from '@angular/core';
 
 import { copy } from 'clipboard';
 
@@ -9,15 +9,10 @@ import { copy } from 'clipboard';
 })
 export class TextBlockComponent {
 
-  contentLength: number = 0;
-
-  constructor(private el: ElementRef) {}
+  @Input() content: string = "";
 
   copyText() {
-    const content = this.el.nativeElement.querySelector('#ngContent').innerHTML.trim();
-    copy(content);
-    this.contentLength = content.length;
+    copy(this.content);
   }
-
 
 }

@@ -5,14 +5,21 @@ import { Injectable } from '@angular/core';
 })
 export class CifraDeVigenereService {
 
-  alfabetoParam: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  tabelaSimples: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  tabelaCompleta: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()-_=+{}[],.<>:;/?' + '\\' + '|"' + "'";
+  tabela: {[key: string]: string} = {
+    'Simples': this.tabelaSimples,
+    'Completa': this.tabelaCompleta,
+  };
 
-  cifrar = (mensagem: string, chave: string) => this.vigenere(mensagem, chave, true);
-  decifrar = (mensagem: string, chave: string) => this.vigenere(mensagem, chave, false);
+  cifrar = (mensagem: string, chave: string, modo: string) => this.vigenere(mensagem, chave, modo, true);
+  decifrar = (mensagem: string, chave: string, modo: string) => this.vigenere(mensagem, chave, modo, false);
 
-  vigenere(mensagem:string, chave:string, cifrar:boolean):string {
-    mensagem = this.formatar(mensagem);
-    chave = this.formatar(chave.replaceAll(' ', ''));
+  vigenere(mensagem:string, chave:string, modo: string, cifrar:boolean):string {
+    const tabela = this.tabela[modo];
+
+    mensagem = this.formatar(mensagem, modo);
+    chave = this.formatar(chave.replaceAll(' ', ''), modo);
     
     while (chave.length < mensagem.length) {
       chave += chave;
@@ -22,21 +29,21 @@ export class CifraDeVigenereService {
     
     let iChave = 0;
     for (const i in mensagem.split('')) {
-      if (mensagem[i] == ' ') {
+      if (mensagem[i] == ' ' && modo == 'Simples') {
         resultado += ' ';
         continue;
       }
 
       /* inicio - Cifrar e decifrar */
-      const iAlfabetoMensagem = this.alfabetoParam.indexOf(mensagem[i]);
-      const iAlfabetoChave = this.alfabetoParam.indexOf(chave[iChave]);
+      const iAlfabetoMensagem = tabela.indexOf(mensagem[i]);
+      const iAlfabetoChave = tabela.indexOf(chave[iChave]);
       let iCifrado:number;
       if (cifrar) {
-        iCifrado = ( iAlfabetoMensagem + iAlfabetoChave ) % this.alfabetoParam.length;
+        iCifrado = ( iAlfabetoMensagem + iAlfabetoChave ) % tabela.length;
       } else {
-        iCifrado = ( iAlfabetoMensagem - iAlfabetoChave + this.alfabetoParam.length ) % this.alfabetoParam.length;
+        iCifrado = ( iAlfabetoMensagem - iAlfabetoChave + tabela.length ) % tabela.length;
       }
-      const letraCifrada = this.alfabetoParam[iCifrado];
+      const letraCifrada = tabela[iCifrado];
       resultado += letraCifrada;
       /* fim - Cifrar e decifrar */
 
@@ -46,11 +53,39 @@ export class CifraDeVigenereService {
     return resultado;
   }
 
-  formatar(param:string):string {
+  formatar(param:string, modo:string):string {
+    const tabela = this.tabela[modo];
+
+    let formatado = "erro";
+    
+    if (modo == 'Simples') {
+      formatado = this.formatarSimples(param, tabela);
+    }
+
+    if (modo == 'Completa') {
+      formatado = this.formatarCompleto(param, tabela);
+    }
+
+    return formatado;
+  }
+
+  formatarSimples(param:string, tabela: string):string {
     let formatado = param.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
 
     for (const c of formatado) {
-      if (this.alfabetoParam.indexOf(c) == -1 && c != ' ') {
+      if (tabela.indexOf(c) == -1 && c != ' ') {
+        formatado = formatado.replaceAll(c, '');
+      }
+    }
+
+    return formatado;
+  }
+
+  formatarCompleto(param:string, tabela: string):string {
+    let formatado = param.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    for (const c of formatado) {
+      if (tabela.indexOf(c) == -1) {
         formatado = formatado.replaceAll(c, '');
       }
     }
