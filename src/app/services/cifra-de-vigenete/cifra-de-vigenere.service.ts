@@ -23,7 +23,11 @@ export class CifraDeVigenereService {
       response.mensagemErro = "A chave do modo de criptografia simples precisa ter pelo menos uma letra";
       return response;
     }
-    response.chaveFormatada = chave;
+    
+    if (modo == 'Simples') {
+      response.chaveFormatada = chave;
+    }
+
     chave = chave.replaceAll(' ', '');
     
     while (chave.length < mensagem.length) {
