@@ -12,14 +12,19 @@ export class CifraDeVigenereService {
     'Completa': this.tabelaCompleta,
   };
 
-  cifrar = (mensagem: string, chave: string, modo: string) => this.vigenere(mensagem, chave, modo, true);
-  decifrar = (mensagem: string, chave: string, modo: string) => this.vigenere(mensagem, chave, modo, false);
-
-  vigenere(mensagem:string, chave:string, modo: string, cifrar:boolean):string {
+  vigenere(mensagem:string, chave:string, modo: string, cifrar:boolean):VigenereResponse {
+    const response = new VigenereResponse(chave, mensagem);
     const tabela = this.tabela[modo];
 
     mensagem = this.formatar(mensagem, modo);
-    chave = this.formatar(chave.replaceAll(' ', ''), modo);
+    chave = this.formatar(chave, modo);
+
+    if (chave.length == 0) {
+      response.mensagemErro = "A chave do modo de criptografia simples precisa ter pelo menos uma letra";
+      return response;
+    }
+    response.chaveFormatada = chave;
+    chave = chave.replaceAll(' ', '');
     
     while (chave.length < mensagem.length) {
       chave += chave;
@@ -59,7 +64,8 @@ export class CifraDeVigenereService {
       }
     }
 
-    return resultado;
+    response.resultado = resultado;
+    return response;
   }
 
   formatar(param:string, modo:string):string {
@@ -110,6 +116,19 @@ export class CifraDeVigenereService {
     }
 
     return formatado;
+  }
+
+}
+
+class VigenereResponse {
+  chaveFormatada: string = "";
+  resultado: string = "";
+  mensagemErro: string = "";
+
+  constructor (chaveFormatada: string="", resultado: string="", mensagemErro: string="") {
+    if (chaveFormatada) this.chaveFormatada = chaveFormatada;
+    if (resultado)      this.resultado = resultado;
+    if (mensagemErro)   this.mensagemErro = mensagemErro;
   }
 
 }
