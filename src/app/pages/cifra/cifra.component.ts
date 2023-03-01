@@ -4,11 +4,11 @@ import { CifraDeVigenereService } from '../../services/cifra-de-vigenete/cifra-d
 import { copy } from 'clipboard';
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss']
+  selector: 'app-cifra',
+  templateUrl: './cifra.component.html',
+  styleUrls: ['./cifra.component.scss']
 })
-export class InicioComponent {
+export class CifraComponent {
 
   chave: string = "";
   texto: string = "";

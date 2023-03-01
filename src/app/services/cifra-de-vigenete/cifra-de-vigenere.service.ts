@@ -50,6 +50,15 @@ export class CifraDeVigenereService {
       iChave++
     }
 
+    const unicodeCodes: string[] = _getUnicodeCodes(resultado);
+    if (unicodeCodes.length > 0) {
+      for (const code of unicodeCodes) {
+        const caractere = String.fromCodePoint(parseInt(code.slice(2), 16));
+
+        resultado = resultado.replaceAll(code, caractere);
+      }
+    }
+
     return resultado;
   }
 
@@ -82,15 +91,32 @@ export class CifraDeVigenereService {
   }
 
   formatarCompleto(param:string, tabela: string):string {
-    let formatado = param.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    let formatado = param;
 
     for (const c of formatado) {
       if (tabela.indexOf(c) == -1) {
-        formatado = formatado.replaceAll(c, '');
+
+        const char: string = c;
+        const codePoint: number | undefined = char.codePointAt(0);
+
+        if (codePoint) {
+          const codePointStr: string = codePoint.toString(16).toUpperCase();
+  
+          const code = `U+${codePointStr.padStart(5, "0")}`;
+  
+          formatado = formatado.replaceAll(c, code);
+        }
       }
     }
 
     return formatado;
   }
 
+}
+
+function _getUnicodeCodes(str: string): string[] {
+  const regex = /U\+[0-9A-Fa-f]{4,5}/g;
+  const matches = str.match(regex);
+
+  return matches ? matches : [];
 }

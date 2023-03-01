@@ -20,8 +20,8 @@ export class AppComponent {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
 
-        if (this.currentRoute.includes('/documentacao')) {
-          this.titleService.setTitle(`${this.title} | Documentação`);
+        if (this.currentRoute.includes('/artigo')) {
+          this.titleService.setTitle(`${this.title} | Artigo`);
         } else {
           this.titleService.setTitle(this.title);
         }
