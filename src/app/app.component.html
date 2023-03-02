@@ -13,7 +13,7 @@
                 <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page" routerLink="/">Cifra</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [class]="currentRoute == '/artigo' ? 'active' : ''" routerLink="/artigo">Artigo</a>
+                <a class="nav-link" [class]="currentRoute.includes('/artigo') ? 'active' : ''" routerLink="/artigo">Artigo</a>
             </li>
         </ul>
     </div>

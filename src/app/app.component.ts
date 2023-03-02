@@ -35,6 +35,9 @@ export class AppComponent {
             'cifra-de-vigenere-na-pratica': ' - Cifra de Vigenère na prática',
             'quem-foi-vigenere': ' - Quem foi Vigenère',
             'a-matematica-da-cifra-de-vigenere': ' - A matemática da cifra de Vigenère',
+
+            'a-equacao-da-criptografia': ' - A equação da criptografia',
+            'a-equacao-da-descriptografia': ' - A equação da descriptografia',
             '': '',
           };
 
