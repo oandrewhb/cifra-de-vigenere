@@ -31,8 +31,20 @@ footer a:hover {
 
 nav {
     background-color: #fff;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.nav-link {
+    color: #000000;
+}
+
+.nav-link:hover {
+    color: #0D6EFD;
+}
+
+.nav-link.active {
+    border-bottom: 3px solid #0D6EFD;
+    color: #0D6EFD;
 }
 
 p.lead {
