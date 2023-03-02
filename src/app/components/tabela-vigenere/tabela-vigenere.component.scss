@@ -1,9 +1,12 @@
 div {
-    padding: 8px;
-    background-color: #F8F9FA;
+    padding: 0px;
     overflow: auto;
     width: 100%;
     max-height: 90vh;
+}
+
+table {
+    background-color: #F8F9FA;
 }
 
 td, th {
