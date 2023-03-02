@@ -9,7 +9,7 @@ export class CifraDeVigenereService {
   tabelaCompleta: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()-_=+{}[],.<>:;/?' + '\\' + '|"' + "'";
   tabela: {[key: string]: string} = {
     'Simples': this.tabelaSimples,
-    'Completa': this.tabelaCompleta,
+    'Completo': this.tabelaCompleta,
   };
 
   vigenere(mensagem:string, chave:string, modo: string, cifrar:boolean):VigenereResponse {
@@ -81,7 +81,7 @@ export class CifraDeVigenereService {
       formatado = this.formatarSimples(param, tabela);
     }
 
-    if (modo == 'Completa') {
+    if (modo == 'Completo') {
       formatado = this.formatarCompleto(param, tabela);
     }
 

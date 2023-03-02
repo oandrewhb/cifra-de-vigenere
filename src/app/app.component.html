@@ -1,24 +1,21 @@
 <!-- inicio - Menu principal -->
-<nav>
-    <div class="container-fluid my-3">
-        <div class="row">
-            <div class="col text-center">
-                <h1><i class="fa-solid fa-hashtag"></i> Cifra de Vigenère</h1>
-            </div>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col text-center">
+            <h1><i class="fa-solid fa-hashtag"></i> Cifra de Vigenère</h1>
         </div>
     </div>
-    
-    <div class="container-fluid mb-5">
-        <div class="row">
-            <ul class="nav nav-tabs justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page" routerLink="/">Cifra</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [class]="currentRoute == '/artigo' ? 'active' : ''" routerLink="/artigo">Artigo</a>
-                </li>
-            </ul>
-        </div>
+</div>
+<nav class="container-fluid mb-5 sticky-top">
+    <div class="row">
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page" routerLink="/">Cifra</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class]="currentRoute == '/artigo' ? 'active' : ''" routerLink="/artigo">Artigo</a>
+            </li>
+        </ul>
     </div>
 </nav>
 <!-- fim - Menu principal -->
@@ -36,12 +33,18 @@
 <!-- inicio - Rodapé -->
 <footer>
     <div class="container">
-        <div class="row">
-            <div class="col text-center">
+        <div class="row align-items-center">
+            <div class="col-md col-xs-12 text-center">
                 <a href="https://github.com/andrewhermelino/cifra-de-vigenere" target="_blank" title="Repositório desse projeto"><i class="fa-brands fa-github"></i></a>
                 <p><a href="https://github.com/andrewhermelino" target="_blank" title="Meu perfil no Github">andrewhermelino</a></p>
+            </div>
+            <div class="col-md col-xs-12 text-center">
+                <p class="lead">
+                    Os artigos desse projeto foram escritos usando <a href="https://chat.openai.com/" title="Acessar chat" target="_blank">chatGPT</a>&nbsp;<img src="../../../assets/img/chatGPT.png" alt="chatGPT logo">
+                </p>
             </div>
         </div>
     </div>
 </footer>
 <!-- inicio - Rodapé -->
+

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'tabela-vigenere',
@@ -7,25 +7,37 @@ import { Component } from '@angular/core';
 })
 export class TabelaVigenereComponent {
 
-  alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  tabela: string[][];
+  @Input() flUsarTabela = 'Simples';
+
+  tabelaSimples: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  tabelaCompleta: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()-_=+{}[],.<>:;/?' + '\\' + '|"' + "'";
+
+  tabela: {[key: string]: string[][]} = {
+    'Simples': [],
+    'Completo': [],
+  };
 
   constructor() {
-    const tabela:string[][] = [];
+    this.tabela['Simples'] = this.gerarTabela(this.tabelaSimples);
+    this.tabela['Completo'] = this.gerarTabela(this.tabelaCompleta);
+  }
 
-    for(const iLinha in this.alfabeto.split('')) {
+  gerarTabela(tabela: string): string[][] {
+    const tabelaGerada:string[][] = [];
+
+    for(const iLinha in tabela.split('')) {
       const linhaArray: string[] = [];
 
-      for(let letra = 0; letra < this.alfabeto.length; letra++) {
-        const iLetra = (+iLinha + letra) % this.alfabeto.length;
+      for(let letra = 0; letra < tabela.length; letra++) {
+        const iLetra = (+iLinha + letra) % tabela.length;
 
-        linhaArray.push(this.alfabeto[iLetra]);
+        linhaArray.push(tabela[iLetra]);
       }
 
-      tabela.push(linhaArray);
+      tabelaGerada.push(linhaArray);
     }
 
-    this.tabela = tabela;
+    return tabelaGerada;
   }
 
 }

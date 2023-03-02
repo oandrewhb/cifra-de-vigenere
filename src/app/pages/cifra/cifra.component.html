@@ -1,44 +1,69 @@
-<div class="mb-4">
-
+<main>
     <div class="mb-4">
-        <label for="chave" class="form-label">Chave</label>
-        <div class="input-group mb-1">
-            <input type="text" class="form-control" id="chave" [(ngModel)]="chave" required>
-            <button class="btn btn-outline-secondary" (click)="gerarChaveAleatoria()">Gerar</button>
+
+        <div class="mb-4">
+            <label for="chave" class="form-label">Chave</label>
+            <div class="input-group mb-1">
+                <input type="text" class="form-control" id="chave" [(ngModel)]="chave" required>
+                <button class="btn btn-outline-secondary" (click)="gerarChaveAleatoria()">Gerar</button>
+            </div>
+            <p><a href="#" (click)="copiarChave()">{{ chave.trim() ? 'Copiar chave' : ''}}</a></p>
         </div>
-        <p><a href="#" (click)="copiarChave()">{{ chave.trim() ? 'Copiar chave' : ''}}</a></p>
-    </div>
+        
+        <div class="mb-4">
+            <label for="mensagem" class="form-label">Mensagem</label>
+            <textarea class="form-control" id="mensagem" rows="10" [(ngModel)]="mensagem" required></textarea>
+            <div class="row">
+                <div class="col"><p><a href="#" (click)="colarTexto()">Colar texto</a></p></div>
+                <div class="col"><p class="text-end">{{ mensagem.length > 0 ? mensagem.length : '' }}</p></div>
+            </div>
+        </div>
     
-    <div class="mb-4">
-        <label for="mensagem" class="form-label">Mensagem</label>
-        <textarea class="form-control" id="mensagem" rows="10" [(ngModel)]="mensagem" required></textarea>
-        <div class="row">
-            <div class="col"><p><a href="#" (click)="colarTexto()">Colar texto</a></p></div>
-            <div class="col"><p class="text-end">{{ mensagem.length > 0 ? mensagem.length : '' }}</p></div>
+        <div class="mb-4">
+            <label for="modo" class="form-label">Modo de criptografia</label>
+            <div class="mb-1">
+                <div class="form-check" *ngFor="let modo of modoArray">
+                    <input class="form-check-input" type="radio" name="modo" id="" [(ngModel)]="modoSelecionado" [value]="modo">
+                    <label class="form-check-label" for="">
+                        {{ modo }}
+                        <button *ngIf="modo == 'Completo'" type="button" class="btn btn-secondary btn-sm btn-duvida" data-bs-toggle="modal" data-bs-target="#modalModoCompleto">
+                            <i class="fa-solid fa-question"></i>
+                        </button>
+                    </label>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="mb-4">
-        <label for="modo" class="form-label">Modo de criptografia</label>
-        <div class="mb-1">
-            <div class="form-check" *ngFor="let modo of modoArray">
-                <input class="form-check-input" type="radio" name="modo" id="" [(ngModel)]="modoSelecionado" [value]="modo">
-                <label class="form-check-label" for="">
-                    {{modo}}
-                </label>
+        
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary me-2 mt-2" (click)="criptografar()" [disabled]="!chave.trim() || !mensagem.trim()">Criptografar</button>
+                <button type="button" class="btn btn-outline-primary me-2 mt-2" (click)="descriptografar()" [disabled]="!chave.trim() || !mensagem.trim()">Descriptografar</button>
+            </div>
+            <div class="col text-end">
+                <button type="button" class="btn btn-outline-secondary mt-2" (click)="limpar()">Limpar</button>
             </div>
         </div>
     </div>
     
-    <div class="row">
-        <div class="col">
-            <button type="button" class="btn btn-primary me-2 mt-2" (click)="criptografar()" [disabled]="!chave.trim() || !mensagem.trim()">Criptografar</button>
-            <button type="button" class="btn btn-outline-primary me-2 mt-2" (click)="descriptografar()" [disabled]="!chave.trim() || !mensagem.trim()">Descriptografar</button>
-        </div>
-        <div class="col text-end">
-            <button type="button" class="btn btn-outline-secondary mt-2" (click)="limpar()">Limpar</button>
+    <text-block *ngIf="resultado != ''" content="{{ resultado }}"></text-block>
+</main>
+
+
+<!-- inicio - Modal modo de criptografia simples -->
+<div class="modal fade" id="modalModoCompleto" tabindex="-1" aria-labelledby="modalModoCompletoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalModoCompletoLabel">Oque é o modo de criptografia completo?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>O modo de criptografia completo é uma opção mais avançada em comparação com o modo de criptografia simples. O modo completo engloba um conjunto de 92 caracteres, incluindo letras maiúsculas e minúsculas, números, espaços, pontuação e caracteres especiais. Isso significa que a codificação é capaz de fornecer uma maior segurança para as informações criptografadas, tornando-as mais difíceis de serem decodificadas ou acessadas por pessoas não autorizadas. Diferente do modo de criptografia simples que utiliza apenas 26 letras maiusculas do alfabeto e mantem os espaços.</p>
+                <p>Além disso, todos os caracteres da mensagem que não pertençam aos 92 caracteres do conjunto de caracteres são convertidos em seus respectivos códigos hexadecimais e, em seguida, criptografados juntamente com a mensagem. Dessa forma, qualquer caractere do conjunto Unicode UTF-8, inclusive emojis, pode ser criptografado sem nenhum problema.</p>
+                <p>Segue um exemplo do quadrado de Vigenère usando esses 92 caracteres:</p>
+                <tabela-vigenere flUsarTabela="Completo"></tabela-vigenere>
+            </div>
         </div>
     </div>
 </div>
-
-<text-block *ngIf="resultado != ''" content="{{ resultado }}"></text-block>
+<!-- fim - Modal modo de criptografia simples -->

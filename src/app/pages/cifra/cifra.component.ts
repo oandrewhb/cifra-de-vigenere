@@ -14,7 +14,7 @@ export class CifraComponent {
   mensagem: string = "";
   resultado: string = "";
 
-  modoArray = ['Simples', 'Completa'];
+  modoArray = ['Simples', 'Completo'];
   modoSelecionado: string = this.modoArray[1];
 
   constructor (

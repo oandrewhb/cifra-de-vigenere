@@ -3,12 +3,12 @@
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col" *ngFor="let letra of tabela[0]">{{ letra }}</th>
+        <th scope="col" *ngFor="let letra of tabela[flUsarTabela][0]" class="top">{{ letra }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let linha of tabela">
-        <th scope="row">{{ linha[0] }}</th>
+      <tr *ngFor="let linha of tabela[flUsarTabela]">
+        <th scope="row" class="left">{{ linha[0] }}</th>
         <td *ngFor="let letra of linha">{{ letra }}</td>
       </tr>
     </tbody>

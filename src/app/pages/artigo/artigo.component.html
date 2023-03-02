@@ -68,3 +68,41 @@ cripto:   W F E I P U
 <p>Além da criptografia, Vigenère também fez contribuições significativas para a teoria dos números e para a astronomia. Ele publicou um tratado sobre a equação do terceiro grau, em que apresentou uma solução para uma equação de terceiro grau cúbica irreversível. Vigenère também fez estudos sobre eclipses solares e lunares e sobre a teoria do movimento planetário.</p>
 <p>Apesar de suas contribuições para a matemática e para a criptografia, Vigenère é geralmente menos conhecido do que outros matemáticos da época, como Pierre de Fermat e René Descartes. No entanto, sua cifra polialfabética continua sendo estudada e usada até hoje em diferentes contextos, incluindo a criptografia de dados em computadores. Vigenère é lembrado como um pioneiro da criptografia moderna, que desenvolveu técnicas que ainda são relevantes e importantes nos dias de hoje.</p>
 <p>Vigenère morreu em Paris em 1596, e embora sua cifra tenha sido pouco utilizada durante a sua vida, ela continuou a ser estudada e aperfeiçoada ao longo dos séculos seguintes. Hoje, a cifra de Vigenère é considerada um marco importante na história da criptografia, e continua a ser um objeto de estudo e pesquisa para criptógrafos e estudantes de segurança da informação em todo o mundo.</p>
+
+<h1 id="a-matematica-da-cifra-de-vigenere">A matemática da cifra de vigenere <a href="/artigo/#a-matematica-da-cifra-de-vigenere"><i class="fa-solid fa-link"></i></a></h1>
+<p>Para analisar a matemática da cifra de Vigenère, vamos assumir que cada letra do alfabeto é representado por um número de 0 a 25:</p>
+<pre>
+0 - A  | 10 - K  | 20 - U  
+1 - B  | 11 - L  | 21 - V  
+2 - C  | 12 - M  | 22 - W  
+3 - D  | 13 - N  | 23 - X  
+4 - E  | 14 - O  | 24 - Y  
+5 - F  | 15 - P  | 25 - Z  
+6 - G  | 16 - Q  | 
+7 - H  | 17 - R  | 
+8 - I  | 18 - S  | 
+9 - J  | 19 - T  | 
+</pre>
+
+<h2>A equação da criptografia</h2>
+<pre>Ci = Pi + Ki (mod 26)</pre>
+<p>Onde Ci representa o caractere cifrado, Pi é o caractere puro e Ki é a chave de criptografia. O "mod 26" significa que o resultado deve ser dividido por 26, e o resto dessa divisão é o resultado final.</p>
+<p>Por exemplo, se quisermos cifrar a letra "M" utilizando a chave "D", primeiro precisamos converter as letras em números. Na tabela, "M" é 12 e "D" é 3. Então, podemos usar a equação:</p>
+<pre>
+C = P + K (mod 26)
+C = 12 + 3 (mod 26)
+C = 15 (mod 26)
+C = 15
+</pre>
+<p>Isso significa que a letra "M" foi cifrada como "P".</p>
+
+<h2>A equação da descriptografia</h2>
+<p>Para decifrar, utilizamos a equação inversa:</p>
+<pre>P = C - K + 26 (mod 26)</pre>
+<p>Por exemplo, se tivermos a letra "Y" cifrada como "L" com a chave "K", podemos calcular:</p>
+<pre>
+P = 25 - 10 + 26 (mod 26)
+P = 14
+</pre>
+<p>Então, "Y" foi decifrada como "O".</p>
+

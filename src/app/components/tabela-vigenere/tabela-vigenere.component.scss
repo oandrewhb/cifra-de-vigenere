@@ -1,6 +1,9 @@
 div {
     padding: 8px;
     background-color: #F8F9FA;
+    overflow: auto;
+    width: 100%;
+    max-height: 90vh;
 }
 
 td, th {
@@ -19,6 +22,17 @@ td, th {
     aspect-ratio: 1/2 !important;
 }
 
-td {
+th {
+    position: sticky;
+    background-color: #e2e2e2;
+}
+th.top {
+    top: 0;
+}
+th.left {
+    left: 0;
+}
+
+td, th {
     border: 1px solid #bebebe;
 }
