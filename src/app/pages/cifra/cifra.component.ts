@@ -11,17 +11,15 @@ import { copy } from 'clipboard';
 export class CifraComponent {
 
   chave: string = "";
-  texto: string = "";
+  mensagem: string = "";
   resultado: string = "";
 
   modoArray = ['Simples', 'Completa'];
   modoSelecionado: string = this.modoArray[1];
 
-  cifraDeVigenere: CifraDeVigenereService;
-
-  constructor (cifraDeVigenere: CifraDeVigenereService) {
-    this.cifraDeVigenere = cifraDeVigenere;
-  }
+  constructor (
+    private cifraDeVigenere: CifraDeVigenereService,
+  ) { }
 
   criptografar():void {
     this.vigenere(true);
@@ -31,7 +29,7 @@ export class CifraComponent {
   }
 
   vigenere(cifrar: boolean): void {
-    const response = this.cifraDeVigenere.vigenere(this.texto, this.chave, this.modoSelecionado, cifrar);
+    const response = this.cifraDeVigenere.vigenere(this.mensagem, this.chave, this.modoSelecionado, cifrar);
 
     if (response.mensagemErro) {
       alert(response.mensagemErro);
@@ -46,9 +44,15 @@ export class CifraComponent {
     copy(this.chave);
   }
 
+  colarTexto():void {
+    navigator['clipboard'].readText().then((data) => {
+      this.mensagem = data;
+    });
+  }
+
   limpar() {
     this.chave = "";
-    this.texto = "";
+    this.mensagem = "";
     this.resultado = "";
     this.modoSelecionado = this.modoArray[1]
   }

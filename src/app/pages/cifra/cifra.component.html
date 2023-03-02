@@ -9,10 +9,13 @@
         <p><a href="#" (click)="copiarChave()">{{ chave.trim() ? 'Copiar chave' : ''}}</a></p>
     </div>
     
-    <div class="mb-2">
-        <label for="texto" class="form-label">Texto</label>
-        <textarea class="form-control" id="texto" rows="5" [(ngModel)]="texto" required></textarea>
-        <p class="text-end">{{ texto.length > 0 ? texto.length : '' }}</p>
+    <div class="mb-4">
+        <label for="mensagem" class="form-label">Mensagem</label>
+        <textarea class="form-control" id="mensagem" rows="10" [(ngModel)]="mensagem" required></textarea>
+        <div class="row">
+            <div class="col"><p><a href="#" (click)="colarTexto()">Colar texto</a></p></div>
+            <div class="col"><p class="text-end">{{ mensagem.length > 0 ? mensagem.length : '' }}</p></div>
+        </div>
     </div>
 
     <div class="mb-4">
@@ -29,8 +32,8 @@
     
     <div class="row">
         <div class="col">
-            <button type="button" class="btn btn-primary me-2 mt-2" (click)="criptografar()" [disabled]="!chave.trim() || !texto.trim()">Criptografar</button>
-            <button type="button" class="btn btn-outline-primary me-2 mt-2" (click)="descriptografar()" [disabled]="!chave.trim() || !texto.trim()">Descriptografar</button>
+            <button type="button" class="btn btn-primary me-2 mt-2" (click)="criptografar()" [disabled]="!chave.trim() || !mensagem.trim()">Criptografar</button>
+            <button type="button" class="btn btn-outline-primary me-2 mt-2" (click)="descriptografar()" [disabled]="!chave.trim() || !mensagem.trim()">Descriptografar</button>
         </div>
         <div class="col text-end">
             <button type="button" class="btn btn-outline-secondary mt-2" (click)="limpar()">Limpar</button>
