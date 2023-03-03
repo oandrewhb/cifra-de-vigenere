@@ -4,7 +4,7 @@ Site que oferece ferramenta para criptografar e descriptografar mensagens com ci
 
 <https://cifradevigenere.vercel.app/>
 
-## Rorando o projeto
+## Rodando o projeto
 
 Instalar o Angular
 ```
