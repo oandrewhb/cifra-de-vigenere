@@ -4,8 +4,13 @@
         <div class="mb-4">
             <label for="chave" class="form-label">Chave</label>
             <div class="input-group mb-1">
-                <input type="text" class="form-control" id="chave" [(ngModel)]="chave" required>
-                <button class="btn btn-outline-secondary" (click)="gerarChaveAleatoria()">Gerar</button>
+                <input type="text" class="form-control" id="chave" [(ngModel)]="chave" aria-label="Text input with dropdown button" required>
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Gerar</button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" (click)="gerarChaveAleatoria()">Chave aleatória</a></li>
+                    <li><a class="dropdown-item" (click)="gerarChaveComPalavraAleatoria()">Palavra aleatória</a></li>
+                    <li><a class="dropdown-item disabled">Frase aleatória</a></li>
+                </ul>
             </div>
             <p><a href="#" (click)="copiarChave()">{{ chave.trim() ? 'Copiar chave' : ''}}</a></p>
         </div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { CifraDeVigenereService } from '../../services/cifra-de-vigenete/cifra-de-vigenere.service';
 import { copy } from 'clipboard';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cifra',
@@ -19,6 +20,7 @@ export class CifraComponent {
 
   constructor (
     private cifraDeVigenere: CifraDeVigenereService,
+    private http: HttpClient,
   ) { }
 
   criptografar():void {
@@ -57,18 +59,22 @@ export class CifraComponent {
     this.modoSelecionado = this.modoArray[1]
   }
 
-  gerarChaveAleatoria = ():void => {this.chave = _gerarChaveAleatoria()};
-}
-
-function _gerarChaveAleatoria():string {
-  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const comprimento = 30;
-  let chave = '';
-
-  for (let i = 0; i < comprimento; i++) {
-    let indice = Math.floor(Math.random() * caracteres.length);
-    chave += caracteres.charAt(indice);
+  gerarChaveAleatoria():void {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const comprimento = 30;
+    let chave = '';
+  
+    for (let i = 0; i < comprimento; i++) {
+      let indice = Math.floor(Math.random() * caracteres.length);
+      chave += caracteres.charAt(indice);
+    }
+  
+    this.chave = chave;
   }
 
-  return chave;
+  gerarChaveComPalavraAleatoria():void {
+    this.http.get('https://api.dicionario-aberto.net/random').subscribe((data: any) => {
+      this.chave = data.word;
+    });
+  }
 }

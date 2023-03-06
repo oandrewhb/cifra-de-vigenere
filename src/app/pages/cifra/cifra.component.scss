@@ -20,8 +20,12 @@ main p {
     padding-right: 5px;
 }
 
-a {
+p > a {
     height: 12px;
+}
+
+a {
+    cursor: pointer;
 }
 
 .btn-duvida {

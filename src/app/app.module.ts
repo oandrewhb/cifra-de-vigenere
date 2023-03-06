@@ -8,6 +8,7 @@ import { ArtigoComponent } from './pages/artigo/artigo.component';
 import { FormsModule } from '@angular/forms';
 import { TextBlockComponent } from './components/text-block/text-block.component';
 import { TabelaVigenereComponent } from './components/tabela-vigenere/tabela-vigenere.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TabelaVigenereComponent } from './components/tabela-vigenere/tabela-vig
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
