@@ -15,11 +15,16 @@ export class AppComponent {
   currentRoute: string = "";
   ultimaAtualizacao: string = "";
   linkUltimoCommit: string = "";
+  versaoAtual: string = "";
 
   constructor(private router: Router, private titleService: Title, private http: HttpClient) {
-    this.http.get('https://api.github.com/repos/andrewhermelino/cifra-de-vigenere').subscribe((data: any) => {
+    this.http.get('https://api.github.com/repos/andrewhermelino/cifra-de-vigenere/commits').subscribe((data: any) => {
+      this.versaoAtual = data.length.toString() ?? "";
+      const ultimoCommit = data[0];
 
-      const dataUltimaAtualizacao = new Date(data.updated_at);
+      this.linkUltimoCommit = ultimoCommit.html_url;
+
+      const dataUltimaAtualizacao = new Date(ultimoCommit.commit.committer.date);
 
       const dia  = dataUltimaAtualizacao.getDate().toString();
       const diaF = (dia.length == 1) ? '0'+dia : dia;
@@ -51,10 +56,6 @@ export class AppComponent {
 
       this.ultimaAtualizacao = diaF + " " + nomeMes[mesF] + ", " + anoF;
       this.ultimaAtualizacao = `${diaF} ${nomeMes[mesF]}, ${anoF} - ${horaF}:${minutosF}:${segundosF}`;
-    });
-
-    this.http.get('https://api.github.com/repos/andrewhermelino/cifra-de-vigenere/commits').subscribe((data: any) => {
-      this.linkUltimoCommit = data[0].html_url;
     });
   }
 

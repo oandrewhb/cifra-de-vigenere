@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <p class="text-center"><a href="{{ linkUltimoCommit }}" target="_blank">Última atualização: {{ ultimaAtualizacao }}</a></p>
+    <p class="text-center" *ngIf="ultimaAtualizacao != '' && linkUltimoCommit != '' && versaoAtual != ''"><a href="{{ linkUltimoCommit }}" target="_blank">Última atualização: {{ ultimaAtualizacao }} - v1.{{ versaoAtual }}.0</a></p>
 </footer>
 <!-- inicio - Rodapé -->
 
