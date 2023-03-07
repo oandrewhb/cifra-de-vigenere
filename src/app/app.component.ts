@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Router, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,50 @@ export class AppComponent {
   title = 'Cifra De Vigenère';
 
   currentRoute: string = "";
+  ultimaAtualizacao: string = "";
+  linkUltimoCommit: string = "";
 
-  constructor(private router: Router, private titleService: Title) { }
+  constructor(private router: Router, private titleService: Title, private http: HttpClient) {
+    this.http.get('https://api.github.com/repos/andrewhermelino/cifra-de-vigenere').subscribe((data: any) => {
+
+      const dataUltimaAtualizacao = new Date(data.updated_at);
+
+      const dia  = dataUltimaAtualizacao.getDate().toString();
+      const diaF = (dia.length == 1) ? '0'+dia : dia;
+      const mes  = (dataUltimaAtualizacao.getMonth()+1).toString();
+      const mesF = (mes.length == 1) ? '0'+mes : mes;
+      const anoF = dataUltimaAtualizacao.getFullYear();
+
+      const hora = dataUltimaAtualizacao.getHours().toString();
+      const horaF = (hora.length == 1) ? '0'+hora : hora;
+      const minutos = dataUltimaAtualizacao.getMinutes().toString();
+      const minutosF = (minutos.length == 1) ? '0'+minutos : minutos;
+      const segundos = dataUltimaAtualizacao.getSeconds().toString();
+      const segundosF = (segundos.length == 1) ? '0'+segundos : segundos;
+
+      const nomeMes: {[key: string]: string} = {
+        '01': 'jan',
+        '02': 'fev',
+        '03': 'mar',
+        '04': 'abr',
+        '05': 'mai',
+        '06': 'jun',
+        '07': 'jul',
+        '08': 'ago',
+        '09': 'set',
+        '10': 'out',
+        '11': 'nov',
+        '12': 'dez',
+      }
+
+      this.ultimaAtualizacao = diaF + " " + nomeMes[mesF] + ", " + anoF;
+      this.ultimaAtualizacao = `${diaF} ${nomeMes[mesF]}, ${anoF} - ${horaF}:${minutosF}:${segundosF}`;
+    });
+
+    this.http.get('https://api.github.com/repos/andrewhermelino/cifra-de-vigenere/commits').subscribe((data: any) => {
+      this.linkUltimoCommit = data[0].html_url;
+    });
+  }
 
   ngOnInit() {
     this.router.events.subscribe(event => {

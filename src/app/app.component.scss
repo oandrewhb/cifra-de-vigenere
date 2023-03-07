@@ -2,7 +2,7 @@
     max-width: 800px;
 }
 
-footer {
+footer > div {
     display: flex;
     align-items: center;
     height: 50vh;
@@ -27,6 +27,20 @@ footer p {
 
 footer a:hover {
     opacity: 1;
+}
+
+footer p.text-center {
+    background-color: #0D6EFD;
+    margin: 0px;
+    padding: 8px 0px;
+}
+footer p.text-center a {
+    opacity: 1;
+    color: #ffffff;
+    text-decoration: underline;
+}
+footer p.text-center a:hover {
+    opacity: .5;
 }
 
 nav {

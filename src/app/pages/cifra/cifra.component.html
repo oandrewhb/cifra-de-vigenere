@@ -4,7 +4,7 @@
         <div class="mb-4">
             <label for="chave" class="form-label">Chave</label>
             <div class="input-group mb-1">
-                <input type="text" class="form-control" id="chave" [(ngModel)]="chave" aria-label="Text input with dropdown button" required>
+                <input type="text" class="form-control" id="chave" [(ngModel)]="chave" autocapitalize="off" required>
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Gerar</button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" (click)="gerarChaveAleatoria()">Chave aleatória</a></li>
@@ -53,6 +53,24 @@
     <text-block *ngIf="resultado != ''" content="{{ resultado }}"></text-block>
 </main>
 
+<hr style="margin: 60px 0px;">
+
+<div>
+    <h4>Leia sobre a Cifra de Vigenère</h4>
+    <ul>
+        <li><a routerLink="/artigo" fragment="oque-e-a-cifra-de-vigenere">Oque é a cifra de Vigenere</a></li>
+        <li><a routerLink="/artigo" fragment="a-cifra-de-cesar">A cifra de César</a></li>
+        <li><a routerLink="/artigo" fragment="cifra-de-vigenere-na-pratica">Cifra de Vigenere na prática</a></li>
+        <li><a routerLink="/artigo" fragment="quem-foi-vigenere">Quem foi Vigenère</a></li>
+        <li>
+            <a routerLink="/artigo" fragment="a-matematica-da-cifra-de-vigenere">A matemática da cifra de vigenere</a>
+            <ul>
+                <li><a routerLink="/artigo" fragment="a-equacao-da-criptografia">A equação da criptografia</a></li>
+                <li><a routerLink="/artigo" fragment="a-equacao-da-descriptografia">A equação da descriptografia</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
 
 <!-- inicio - Modal modo de criptografia simples -->
 <div class="modal fade" id="modalModoCompleto" tabindex="-1" aria-labelledby="modalModoCompletoLabel" aria-hidden="true">

@@ -26,6 +26,12 @@ p > a {
 
 a {
     cursor: pointer;
+    text-decoration: none;
+    transition: .1s;
+}
+
+ul a {
+    line-height: 30px;
 }
 
 .btn-duvida {

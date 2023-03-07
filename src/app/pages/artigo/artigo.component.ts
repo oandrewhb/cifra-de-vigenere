@@ -1,5 +1,5 @@
-import { Component, ElementRef  } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, ElementRef } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-artigo',
@@ -8,9 +8,20 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class ArtigoComponent {
 
-  constructor(private elementRef: ElementRef, private router: Router) {}
+  constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
+
+    this.route.fragment.subscribe(fragment => {
+      if (fragment) {
+        setTimeout(() => {
+          this.scrollToElement(fragment);
+        }, 0);
+        return;
+      }
+    });
+
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         
@@ -21,6 +32,7 @@ export class ArtigoComponent {
 
       }
     });
+
   }
 
   scrollToElement(elementId: string): void {

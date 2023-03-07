@@ -19,9 +19,7 @@ export class CifraComponent {
   modoSelecionado: string = this.modoArray[1];
 
   constructor (
-    private cifraDeVigenere: CifraDeVigenereService,
-    private http: HttpClient,
-  ) { }
+    private cifraDeVigenere: CifraDeVigenereService, private http: HttpClient) { }
 
   criptografar():void {
     this.vigenere(true);
