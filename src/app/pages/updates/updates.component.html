@@ -1,0 +1,19 @@
+<div class="container update" *ngFor="let commit of commitsArray">
+    <div class="row">
+        <div class="col">
+            <span class="badge bg-primary rounded-pill" *ngIf="commit.indice == 0">Versão atual</span>
+            <h4>{{commit.versao}} <small>{{ commit.data }}</small></h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <pre>{{ commit.menssagem }}</pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="{{ commit.link }}" target="_blank">Ver commit</a>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,7 @@
 <!-- fim - Menu principal -->
 
 <!-- inicio - Conteúdo -->
-<main class="container max-width-800">
+<main class="container conteudo-pagina">
     <div class="row">
         <div class="col">
             <router-outlet></router-outlet>
@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <p class="text-center" *ngIf="ultimaAtualizacao != '' && linkUltimoCommit != '' && versaoAtual != ''"><a href="{{ linkUltimoCommit }}" target="_blank">Última atualização: {{ ultimaAtualizacao }} - v1.{{ versaoAtual }}.0</a></p>
+    <p class="text-center" *ngIf="ultimaAtualizacao != '' && linkUltimoCommit != '' && versaoAtual != ''"><a routerLink="/updates"> v1.{{ versaoAtual }}.0 ({{ ultimaAtualizacao }})</a></p>
 </footer>
 <!-- inicio - Rodapé -->
 

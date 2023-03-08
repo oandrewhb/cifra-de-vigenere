@@ -1,5 +1,6 @@
-.max-width-800 {
+.conteudo-pagina {
     max-width: 800px;
+    min-height: 40vh;
 }
 
 footer > div {
@@ -34,10 +35,10 @@ footer p.text-center {
     margin: 0px;
     padding: 8px 0px;
 }
-footer p.text-center a {
+footer p.text-center a, footer p.text-center {
     opacity: 1;
     color: #ffffff;
-    text-decoration: underline;
+    text-decoration: none;
 }
 footer p.text-center a:hover {
     opacity: .5;

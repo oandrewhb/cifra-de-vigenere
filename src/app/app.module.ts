@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { TextBlockComponent } from './components/text-block/text-block.component';
 import { TabelaVigenereComponent } from './components/tabela-vigenere/tabela-vigenere.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UpdatesComponent } from './pages/updates/updates.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     ArtigoComponent,
     TextBlockComponent,
     TabelaVigenereComponent,
+    UpdatesComponent,
   ],
   imports: [
     BrowserModule,
