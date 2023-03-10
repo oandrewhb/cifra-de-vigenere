@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class UpdatesComponent {
 
   commitsArray: commit[] = [];
+  errorMsg: string = '';
 
   constructor(private http: HttpClient) {
     this.http.get('https://api.github.com/repos/andrewhermelino/cifra-de-vigenere/commits').subscribe((data: any) => {
@@ -30,6 +31,9 @@ export class UpdatesComponent {
         });
       })
 
+    }, (err: any) => {
+      this.errorMsg = err.message;
+      console.error(err);
     });
   }
 

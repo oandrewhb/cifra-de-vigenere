@@ -18,8 +18,7 @@ export class CifraComponent {
   modoArray = ['Simples', 'Completo'];
   modoSelecionado: string = this.modoArray[1];
 
-  constructor (
-    private cifraDeVigenere: CifraDeVigenereService, private http: HttpClient) { }
+  constructor (private cifraDeVigenere: CifraDeVigenereService, private http: HttpClient) { }
 
   criptografar():void {
     this.vigenere(true);
@@ -73,6 +72,15 @@ export class CifraComponent {
   gerarChaveComPalavraAleatoria():void {
     this.http.get('https://api.dicionario-aberto.net/random').subscribe((data: any) => {
       this.chave = data.word;
+    });
+  }
+
+  gerarChaveComFraseAleatoria():void {
+    this.http.get('https://type.fit/api/quotes').subscribe((data: any) => {
+      const randomIndex = Math.floor(Math.random() * data.length);
+      const frase = data[randomIndex].text;
+
+      this.chave = frase;
     });
   }
 }

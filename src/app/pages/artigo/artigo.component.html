@@ -8,7 +8,7 @@
 </figure>
 
 <h1 id="oque-e-a-cifra-de-vigenere">Oque é a cifra de Vigenere <a routerLink="/artigo" fragment="oque-e-a-cifra-de-vigenere"><i class="fa-solid fa-link"></i></a></h1>
-
+<hr>
 <p>A cifra de Vigenère é uma técnica de criptografia polialfabética inventada por Blaise de Vigenère no século XVI. Ela é uma extensão da cifra de César, que é uma técnica de criptografia monoalfabética na qual cada letra da mensagem é substituída por outra letra a uma distância fixa no alfabeto.</p>
 <p>A cifra de Vigenère usa uma chave para criptografar a mensagem, tornando-a mais segura do que a cifra de César. A chave é uma palavra ou frase que é repetida para ter o mesmo comprimento da mensagem a ser criptografada. Cada letra da chave é usada para escolher uma tabela de substituição diferente, cada uma correspondendo a um alfabeto deslocado.</p>
 <p>Por exemplo, suponha que a mensagem a ser criptografada seja "ATAQUEAMANHA" e a chave seja "SEGREDO". A chave é repetida para ter o mesmo comprimento da mensagem, resultando em "SEGREDOSEGR". Cada letra da mensagem original é criptografada usando uma tabela de Vigenère que é criada a partir da letra correspondente da chave.</p>
@@ -20,7 +20,7 @@
 
 
 <h1 id="a-cifra-de-cesar">A cifra de César <a routerLink="/artigo" fragment="a-cifra-de-cesar"><i class="fa-solid fa-link"></i></a></h1>
-
+<hr>
 <p>A cifra de César é uma técnica de criptografia monoalfabética que foi usada pelo imperador romano Júlio César para proteger mensagens militares. Na cifra de César, cada letra da mensagem é deslocada para a direita ou para a esquerda um número fixo de posições no alfabeto para criar a mensagem criptografada.</p>
 <p>Por exemplo, se a chave for 3, a letra "A" seria criptografada como "D", a letra "B" como "E" e assim por diante. A chave de criptografia é o número de posições que cada letra é deslocada. Se a chave for 3, a letra "A" seria deslocada 3 posições para a direita e criptografada como "D".</p>
 <p>Embora a cifra de César seja uma técnica simples e fácil de entender, ela tem várias desvantagens em relação à cifra de Vigenère. Uma das principais desvantagens é que ela é facilmente quebrada usando um ataque de força bruta, no qual todas as possíveis chaves são testadas até que a mensagem decifrada faça sentido. Como existem apenas 25 chaves possíveis na cifra de César, um ataque de força bruta pode ser executado rapidamente.</p>
@@ -29,37 +29,39 @@
 
 
 <h1 id="cifra-de-vigenere-na-pratica">Cifra de Vigenere na prática <a routerLink="/artigo" fragment="cifra-de-vigenere-na-pratica"><i class="fa-solid fa-link"></i></a></h1>
-
+<hr>
 <p>A cifra de Vigenère é uma técnica de criptografia polialfabética que usa uma chave e tabelas de substituição diferentes para criptografar cada letra da mensagem. Para entender como funciona a cifra de Vigenère na prática, vamos dar um exemplo simples.</p>
-<p>Suponha que queremos criptografar a mensagem "SECRET" usando a chave "KEY". Primeiro, escrevemos a mensagem e a chave em uma tabela, como esta:</p>
+<p>Suponha que queremos criptografar a mensagem "MENSAGEM INDECIFRAVEL" usando a chave "CHAVE". Primeiro, escrevemos a mensagem e a chave em uma tabela, como esta:</p>
 <pre>
-mensagem: S E C R E T
-chave:    K E Y K E Y
+mensagem: M E N S A G E M   I N D E C I F R A V E L
+chave:    C H A V E C H A   V E C H A V E C H A V E
 </pre>
 <p>Em seguida, usamos a tabela de Vigenère para criptografar cada letra da mensagem. A tabela de Vigenère é uma tabela de alfabetos, onde cada linha começa com uma letra diferente do alfabeto, e as letras restantes são as letras do alfabeto na ordem usual. Cada coluna é também uma letra diferente do alfabeto, e as letras restantes são as letras do alfabeto na ordem usual, mas deslocadas uma posição para a direita em relação à coluna anterior.</p>
 <tabela-vigenere></tabela-vigenere>
-<p>Para criptografar a primeira letra da mensagem, "S", encontramos a linha correspondente à letra "S" na tabela de Vigenère. Em seguida, olhamos para a coluna correspondente à primeira letra da chave, "K", para encontrar a letra criptografada. A letra criptografada para "S" com a chave "K" é "W". Então, a primeira letra da mensagem criptografada é "W".</p>
+<p>Para criptografar a primeira letra da mensagem, "M", encontramos a linha correspondente à letra "M" na tabela de Vigenère. Em seguida, olhamos para a coluna correspondente à primeira letra da chave, "C", para encontrar a letra criptografada. A letra criptografada para "M" com a chave "C" é "O". Então, a primeira letra da mensagem criptografada é "O".</p>
 <pre>
-mensagem: S E C R E T
-chave:    K E Y K E Y
-cripto:   W
+mensagem: M E N S A G E M   I N D E C I F R A V E L
+chave:    C H A V E C H A   V E C H A V E C H A V E
+cripto:   O
 </pre>
-<p>Para criptografar a segunda letra da mensagem, "E", encontramos a linha correspondente à letra "E" na tabela de Vigenère. Em seguida, olhamos para a coluna correspondente à segunda letra da chave, "E", para encontrar a letra criptografada. A letra criptografada para "E" com a chave "E" é "F". Então, a segunda letra da mensagem criptografada é "F".</p>
+<p>Para criptografar a segunda letra da mensagem, "E", encontramos a linha correspondente à letra "E" na tabela de Vigenère. Em seguida, olhamos para a coluna correspondente à segunda letra da chave, "H", para encontrar a letra criptografada. A letra criptografada para "E" com a chave "H" é "L". Então, a segunda letra da mensagem criptografada é "L".</p>
 <pre>
-mensagem: S E C R E T
-chave:    K E Y K E Y
-cripto:   W F
+mensagem: M E N S A G E M   I N D E C I F R A V E L
+chave:    C H A V E C H A   V E C H A V E C H A V E
+cripto:   O L
 </pre>
-<p>Continuamos este processo para cada letra da mensagem, usando a próxima letra da chave sempre que precisamos de uma nova letra criptografada. O resultado final para a mensagem "SECRET" com a chave "KEY" seria:</p>
+<p>Continuamos este processo para cada letra da mensagem, usando a próxima letra da chave sempre que precisamos de uma nova letra criptografada. O resultado final para a mensagem "MENSAGEM INDECIFRAVEL" com a chave "CHAVE" seria:</p>
 <pre>
-mensagem: S E C R E T
-chave:    K E Y K E Y
-cripto:   W F E I P U
+mensagem: M E N S A G E M   I N D E C I F R A V E L
+chave:    C H A V E C H A   V E C H A V E C H A V E
+cripto:   O L N N E I L M   D R F L C D J T H V Z P
 </pre>
-<p>Assim, a mensagem criptografada seria "WFEIPU" usando a cifra de Vigenère com a chave "KEY". Para decifrar a mensagem, basta usar a tabela de Vigenère e a mesma chave para encontrar a mensagem original.</p>
+<p>Assim, a mensagem criptografada seria "OLNNEILM DRFLCDJTHVZP" usando a cifra de Vigenère com a chave "CHAVE". Para decifrar a mensagem, basta usar a tabela de Vigenère e a mesma chave para encontrar a mensagem original.</p>
 
 <h1 id="quem-foi-vigenere">Quem foi Vigenère <a routerLink="/artigo" fragment="quem-foi-vigenere" (click)="scrollToElement('quem-foi-vigenere')"><i class="fa-solid fa-link"></i></a></h1>
-
+<hr>
+<img src="../../../assets/img/vigenere.png" class="rounded me-3 d-block d-sm-none text-center" alt="vigenere">
+<img src="../../../assets/img/vigenere.png" class="rounded float-start me-3 d-none d-sm-block" alt="vigenere">
 <p>Blaise de Vigenère foi um diplomata e criptógrafo francês que viveu durante o século XVI. Ele é mais conhecido por ter criado a cifra de Vigenère, um método de criptografia que ainda é estudado e utilizado até hoje.</p>
 <p>Vigenère nasceu em 15 de abril de 1523, em Saint-Pourçain-sur-Sioule, uma cidade na região de Auvergne, no centro da França. Ele era filho de uma família nobre, e sua educação incluiu estudos de matemática e latim, além de treinamento militar. Na época, a criptografia era uma ferramenta essencial para a diplomacia e os negócios, e Vigenère se interessou pela área desde cedo.</p>
 <p>Vigenère estudou matemática na Universidade de Paris e se tornou um mestre em artes em 1549. Posteriormente, ele trabalhou para o rei Henrique III como diplomata, viajando para a Alemanha, Itália e Espanha. Durante suas viagens, ele se interessou pela criptografia, que era uma ferramenta importante para a comunicação secreta entre os governos da época.</p>
@@ -68,8 +70,12 @@ cripto:   W F E I P U
 <p>Além da criptografia, Vigenère também fez contribuições significativas para a teoria dos números e para a astronomia. Ele publicou um tratado sobre a equação do terceiro grau, em que apresentou uma solução para uma equação de terceiro grau cúbica irreversível. Vigenère também fez estudos sobre eclipses solares e lunares e sobre a teoria do movimento planetário.</p>
 <p>Apesar de suas contribuições para a matemática e para a criptografia, Vigenère é geralmente menos conhecido do que outros matemáticos da época, como Pierre de Fermat e René Descartes. No entanto, sua cifra polialfabética continua sendo estudada e usada até hoje em diferentes contextos, incluindo a criptografia de dados em computadores. Vigenère é lembrado como um pioneiro da criptografia moderna, que desenvolveu técnicas que ainda são relevantes e importantes nos dias de hoje.</p>
 <p>Vigenère morreu em Paris em 1596, e embora sua cifra tenha sido pouco utilizada durante a sua vida, ela continuou a ser estudada e aperfeiçoada ao longo dos séculos seguintes. Hoje, a cifra de Vigenère é considerada um marco importante na história da criptografia, e continua a ser um objeto de estudo e pesquisa para criptógrafos e estudantes de segurança da informação em todo o mundo.</p>
+<div class="alert alert-primary" role="alert">
+    As informações desse tópico foram geradas pelo ChatGPT e não foram revisadas. Ou seja, <u>esse tópico em específico</u> não é 100% confiável.
+</div>
 
 <h1 id="a-matematica-da-cifra-de-vigenere">A matemática da cifra de vigenere <a routerLink="/artigo" fragment="a-matematica-da-cifra-de-vigenere"><i class="fa-solid fa-link"></i></a></h1>
+<hr>
 <p>Para analisar a matemática da cifra de Vigenère, vamos assumir que cada letra do alfabeto é representado por um número de 0 a 25:</p>
 <pre>
 0 - A   |   10 - K   |   20 - U 

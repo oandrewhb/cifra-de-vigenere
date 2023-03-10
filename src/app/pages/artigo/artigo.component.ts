@@ -8,7 +8,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 })
 export class ArtigoComponent {
 
-  constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute) {}
+  constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
 

@@ -9,7 +9,7 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" (click)="gerarChaveAleatoria()">Chave aleatória</a></li>
                     <li><a class="dropdown-item" (click)="gerarChaveComPalavraAleatoria()">Palavra aleatória</a></li>
-                    <li><a class="dropdown-item disabled">Frase aleatória</a></li>
+                    <li><a class="dropdown-item" (click)="gerarChaveComFraseAleatoria()">Frase aleatória</a></li>
                 </ul>
             </div>
             <p><a href="#" (click)="copiarChave()">{{ chave.trim() ? 'Copiar chave' : ''}}</a></p>
@@ -83,6 +83,7 @@
             <div class="modal-body">
                 <p>O modo de criptografia completo é uma opção mais avançada em comparação com o modo de criptografia simples. O modo completo engloba um conjunto de 92 caracteres, incluindo letras maiúsculas e minúsculas, números, espaços, pontuação e caracteres especiais. Isso significa que a codificação é capaz de fornecer uma maior segurança para as informações criptografadas, tornando-as mais difíceis de serem decodificadas ou acessadas por pessoas não autorizadas. Diferente do modo de criptografia simples que utiliza apenas 26 letras maiusculas do alfabeto e mantem os espaços.</p>
                 <p>Além disso, todos os caracteres da mensagem que não pertençam aos 92 caracteres do conjunto de caracteres são convertidos em seus respectivos códigos hexadecimais e, em seguida, criptografados juntamente com a mensagem. Dessa forma, qualquer caractere do conjunto Unicode UTF-8, inclusive emojis, pode ser criptografado sem nenhum problema.</p>
+                <p>Para ilustrar, a frase "Olá mundo! 😎" é primeiro convertida em uma sequência de códigos Unicode, como "OlU+000E1 mundo! U+1F60E". Em seguida, essa sequência é criptografada. Para decodificar a mensagem, a sequência de códigos é convertida novamente em caracteres, resultando na mensagem original "Olá mundo! 😎".</p>
                 <p>Segue um exemplo do quadrado de Vigenère usando esses 92 caracteres:</p>
                 <tabela-vigenere flUsarTabela="Completo"></tabela-vigenere>
             </div>

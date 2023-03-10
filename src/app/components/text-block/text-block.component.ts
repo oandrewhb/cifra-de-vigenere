@@ -9,11 +9,23 @@ import { copy } from 'clipboard';
 })
 export class TextBlockComponent {
 
+  btnText: string = 'Copiar';
+  timeOutId: any = null;
+
   @Input() content: string = "";
   quebrarLinha: boolean = true;
 
   copyText() {
     copy(this.content);
+
+    if (this.timeOutId) {
+      clearTimeout(this.timeOutId);
+    }
+
+    this.btnText = "Copiado!";
+    this.timeOutId = setTimeout(() => {
+      this.btnText = "Copiar";
+    }, 3000);
   }
 
 }

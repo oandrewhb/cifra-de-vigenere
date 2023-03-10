@@ -60,6 +60,10 @@ export class AppComponent {
 
           this.titleService.setTitle(this.titleService.getTitle() + topicoFormatado[topico]);
 
+        } else {
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+          }, 100);
         }
 
       }
