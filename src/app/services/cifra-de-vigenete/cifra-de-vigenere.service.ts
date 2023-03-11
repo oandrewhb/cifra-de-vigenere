@@ -13,17 +13,26 @@ export class CifraDeVigenereService {
   };
 
   vigenere(mensagem:string, chave:string, modo: string, cifrar:boolean):VigenereResponse {
-    const response = new VigenereResponse(chave, mensagem);
+    const response = new VigenereResponse();
+    response.chaveFormatada = chave;
+
     const tabela = this.tabela[modo];
 
+    const mensagemAntigo = mensagem;
+    const chaveAntigo = chave;
     mensagem = this.formatar(mensagem, modo);
     chave = this.formatar(chave, modo);
-
+    
+    if (chaveAntigo.toUpperCase() != chave.toUpperCase() && modo == 'Simples') {
+      response.warningAlerts.push("O modo de criptografia simples só aceita letras de A a Z na chave! Acentos e caracteres especiais foram removidos da chave.");
+    }
+    if (mensagemAntigo.toUpperCase() != mensagem.toUpperCase() && modo == 'Simples') {
+      response.warningAlerts.push("O modo de criptografia simples só aceita letras de A a Z na mensagem! Acentos e caracteres especiais foram desconsiderados.");
+    }
     if (chave.length == 0) {
-      response.mensagemErro = "A chave do modo de criptografia simples precisa ter pelo menos uma letra";
+      response.dangerAlerts.push("A chave do modo de criptografia simples precisa ter pelo menos uma letra");
       return response;
     }
-    
     if (modo == 'Simples') {
       response.chaveFormatada = chave;
     }
@@ -69,6 +78,7 @@ export class CifraDeVigenereService {
     }
 
     response.resultado = resultado;
+    response.infoAlerts.push(`Mensagem ${cifrar ? 'cifrada' : 'decifrada'} usando o modo de criptografia ${modo}`);
     return response;
   }
 
@@ -127,14 +137,9 @@ export class CifraDeVigenereService {
 class VigenereResponse {
   chaveFormatada: string = "";
   resultado: string = "";
-  mensagemErro: string = "";
-
-  constructor (chaveFormatada: string="", resultado: string="", mensagemErro: string="") {
-    if (chaveFormatada) this.chaveFormatada = chaveFormatada;
-    if (resultado)      this.resultado = resultado;
-    if (mensagemErro)   this.mensagemErro = mensagemErro;
-  }
-
+  warningAlerts: string[] = [];
+  dangerAlerts: string[] = [];
+  infoAlerts: string[] = [];
 }
 
 function _getUnicodeCodes(str: string): string[] {

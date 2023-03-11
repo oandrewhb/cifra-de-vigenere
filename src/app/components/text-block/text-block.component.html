@@ -1,5 +1,5 @@
 <div class="container textBLock">
-    <div class="row">
+    <div class="row header" *ngIf="content.length">
         <div class="col text-end py-2">
             <div class="container">
                 <div class="row">
@@ -25,14 +25,13 @@
     </div>
     <div class="row content">
         <div class="col">
-            <pre id="ngContent" [ngClass]="{'pre-wrap': quebrarLinha}">
-{{ content }}
-            </pre>
+            <pre *ngIf="content.length" id="ngContent" [ngClass]="{'pre-wrap': quebrarLinha}">{{ content }}</pre>
+            <pre *ngIf="!content.length" class="vazio">Nenhuma mensagem foi cifrada ou decifrada ainda...</pre>
         </div>
     </div>
     <div class="row">
         <div class="col text-end">
-            <p>{{ content.length }}</p>
+            <p>{{ content.length ? content.length : '' }}</p>
         </div>
     </div>
 </div>

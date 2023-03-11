@@ -19,13 +19,13 @@ export class UpdatesComponent {
       commitsArray.forEach((commit: any, index: number) => {
         const versao = commitsArray.length - index - 1;
         const data = stringDate(commit.commit.committer.date);
-        const menssagem = commit.commit.message;
+        const mensagem = commit.commit.message;
         const link = commit.html_url;
 
         this.commitsArray.push({
           versao: `v1.${versao}.0`,
           data: data,
-          menssagem: menssagem,
+          mensagem: mensagem,
           link: link,
           indice: index,
         });
@@ -42,7 +42,7 @@ export class UpdatesComponent {
 type commit = {
   versao: string;
   data: string;
-  menssagem: string;
+  mensagem: string;
   link: string;
   indice: number;
 }

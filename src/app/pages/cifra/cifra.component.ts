@@ -18,6 +18,10 @@ export class CifraComponent {
   modoArray = ['Simples', 'Completo'];
   modoSelecionado: string = this.modoArray[1];
 
+  waringAlerts: string[] = [];
+  dangerAlerts: string[] = [];
+  infoAlerts: string[] = [];
+
   constructor (private cifraDeVigenere: CifraDeVigenereService, private http: HttpClient) { }
 
   criptografar():void {
@@ -28,10 +32,17 @@ export class CifraComponent {
   }
 
   vigenere(cifrar: boolean): void {
+    this.waringAlerts = [];
+    this.dangerAlerts = [];
+
     const response = this.cifraDeVigenere.vigenere(this.mensagem, this.chave, this.modoSelecionado, cifrar);
 
-    if (response.mensagemErro) {
-      alert(response.mensagemErro);
+    this.waringAlerts = response.warningAlerts;
+    this.dangerAlerts = response.dangerAlerts;
+    this.infoAlerts = response.infoAlerts;
+
+    if (this.dangerAlerts.length) {
+      this.resultado = "";
       return;
     }
 
@@ -54,6 +65,10 @@ export class CifraComponent {
     this.mensagem = "";
     this.resultado = "";
     this.modoSelecionado = this.modoArray[1]
+
+    this.waringAlerts = [];
+    this.dangerAlerts = [];
+    this.infoAlerts = [];
   }
 
   gerarChaveAleatoria():void {

@@ -31,9 +31,7 @@
                     <input class="form-check-input" type="radio" name="modo" id="" [(ngModel)]="modoSelecionado" [value]="modo">
                     <label class="form-check-label" for="">
                         {{ modo }}
-                        <button *ngIf="modo == 'Completo'" type="button" class="btn btn-secondary btn-sm btn-duvida" data-bs-toggle="modal" data-bs-target="#modalModoCompleto">
-                            <i class="fa-solid fa-question"></i>
-                        </button>
+                        <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalModoCompleto"><span *ngIf="modo == 'Completo'" class="badge rounded-pill bg-secondary">?</span></a>
                     </label>
                 </div>
             </div>
@@ -50,12 +48,24 @@
         </div>
     </div>
     
-    <text-block *ngIf="resultado != ''" content="{{ resultado }}"></text-block>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngFor="let alert of waringAlerts">
+        {{ alert }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngFor="let alert of dangerAlerts">
+        {{ alert }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert" *ngFor="let alert of infoAlerts">
+        {{ alert }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <text-block content="{{ resultado }}"></text-block>
 </main>
 
-<hr style="margin: 60px 0px;">
 
-<div>
+<div style="margin-top: 100px;">
     <h4>Leia sobre a Cifra de Vigenère</h4>
     <ul class="list-unstyled">
         <li><a routerLink="/artigo" fragment="oque-e-a-cifra-de-vigenere">Oque é a cifra de Vigenere</a></li>
