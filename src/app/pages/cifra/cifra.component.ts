@@ -48,6 +48,13 @@ export class CifraComponent {
 
     this.resultado = response.resultado;
     this.chave = response.chaveFormatada;
+
+  }
+
+  closeAlert(alertMsg: string):void {
+    this.waringAlerts = this.waringAlerts.filter(alert => alert != alertMsg);
+    this.dangerAlerts = this.dangerAlerts.filter(alert => alert != alertMsg);
+    this.infoAlerts = this.infoAlerts.filter(alert => alert != alertMsg);
   }
 
   copiarChave():void {

@@ -50,15 +50,15 @@
     
     <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngFor="let alert of waringAlerts">
         {{ alert }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" (click)="closeAlert(alert)"></button>
     </div>
     <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngFor="let alert of dangerAlerts">
         {{ alert }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" (click)="closeAlert(alert)"></button>
     </div>
     <div class="alert alert-primary alert-dismissible fade show" role="alert" *ngFor="let alert of infoAlerts">
         {{ alert }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" (click)="closeAlert(alert)"></button>
     </div>
 
     <text-block content="{{ resultado }}"></text-block>

@@ -23,15 +23,15 @@ export class CifraDeVigenereService {
     mensagem = this.formatar(mensagem, modo);
     chave = this.formatar(chave, modo);
     
+    if (chave.length == 0) {
+      response.dangerAlerts.push("A chave do modo de criptografia simples deve ser composta por letras de A a Z.");
+      return response;
+    }
     if (chaveAntigo.toUpperCase() != chave.toUpperCase() && modo == 'Simples') {
       response.warningAlerts.push("O modo de criptografia simples só aceita letras de A a Z na chave! Acentos e caracteres especiais foram removidos da chave.");
     }
     if (mensagemAntigo.toUpperCase() != mensagem.toUpperCase() && modo == 'Simples') {
       response.warningAlerts.push("O modo de criptografia simples só aceita letras de A a Z na mensagem! Acentos e caracteres especiais foram desconsiderados.");
-    }
-    if (chave.length == 0) {
-      response.dangerAlerts.push("A chave do modo de criptografia simples precisa ter pelo menos uma letra");
-      return response;
     }
     if (modo == 'Simples') {
       response.chaveFormatada = chave;
