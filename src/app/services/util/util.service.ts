@@ -26,7 +26,7 @@ export class UtilService {
     localStorage.setItem(index, JSON.stringify(value));
   }
 
-  getProjectCommits(okFun?: (commits: commit[], lastLoad: string) => void, errFun?: (errMsg: string, gotCache: boolean) => void): void {
+  getProjectCommits(okFun?: (commits: commit[], lastLoad: string) => void, errFun?: (errMsg: string, gotCache: boolean) => void): void {    
     const url = 'https://api.github.com/repos/andrewhermelino/cifra-de-vigenere/commits';
     this.getApi(url, (data: any) => {
       
@@ -41,6 +41,16 @@ export class UtilService {
           htmlUrl: commit.html_url,
         });
       })
+      
+      if (window.location.hostname == 'localhost') {
+        commitsArray.unshift({
+          index: -1,
+          version: `v1.${data.length}.0`,
+          dateStr: 'Em desenvolvimento',
+          message: '- Updates',
+          htmlUrl: '',
+        })
+      }
 
       this.setUtilCache('commitsArray', commitsArray);
       this.setUtilCache('lastLoadCommitsArray', stringDate(new Date()));

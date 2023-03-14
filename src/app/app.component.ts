@@ -18,7 +18,11 @@ export class AppComponent {
 
   constructor(private router: Router, private titleService: Title, private util: UtilService) {
     this.util.getProjectCommits((commits, lastLoad) => {
-      const commit = commits[0];
+      let commit = commits[0];
+      if (commit.index == -1 && commits.length > 1) {
+        commit = commits[1];
+      }
+
       this.versaoAtual = `${commit.version} (${commit.dateStr})`;
       if (lastLoad) {
         this.versaoAtual += ' [Último carregado]';
