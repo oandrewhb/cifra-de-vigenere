@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { CifraDeVigenereService } from '../../services/cifra-de-vigenete/cifra-de-vigenere.service';
+import { CifraDeVigenereService } from '../../services/cifra-de-vigenere/cifra-de-vigenere.service';
+import { UtilService } from 'src/app/services/util/util.service';
 import { copy } from 'clipboard';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cifra',
@@ -22,7 +22,17 @@ export class CifraComponent {
   dangerAlerts: string[] = [];
   infoAlerts: string[] = [];
 
-  constructor (private cifraDeVigenere: CifraDeVigenereService, private http: HttpClient) { }
+  constructor (private cifraDeVigenere: CifraDeVigenereService, private util: UtilService) {
+    this.chave = util.getUtilCache('chave') ?? "";
+    this.mensagem = util.getUtilCache('mensagem') ?? "";
+  }
+
+  onChangeChave():void {
+    this.util.setUtilCache('chave', this.chave);
+  }
+  onChangeMensagem():void {
+    this.util.setUtilCache('mensagem', this.mensagem);
+  }
 
   criptografar():void {
     this.vigenere(true);
@@ -34,6 +44,14 @@ export class CifraComponent {
   vigenere(cifrar: boolean): void {
     this.waringAlerts = [];
     this.dangerAlerts = [];
+
+    this.util.setUtilCache('chave', this.chave);
+    this.util.setUtilCache('mensagem', this.mensagem);
+
+    if (this.chave.trim().length == 0 || this.chave.trim().length == 0) {
+      this.dangerAlerts.push('Informe uma chave e uma mensagem.');
+      return;
+    }
 
     const response = this.cifraDeVigenere.vigenere(this.mensagem, this.chave, this.modoSelecionado, cifrar);
 
@@ -76,6 +94,9 @@ export class CifraComponent {
     this.waringAlerts = [];
     this.dangerAlerts = [];
     this.infoAlerts = [];
+
+    this.util.setUtilCache('chave', this.chave);
+    this.util.setUtilCache('mensagem', this.mensagem);
   }
 
   gerarChaveAleatoria():void {
@@ -92,17 +113,17 @@ export class CifraComponent {
   }
 
   gerarChaveComPalavraAleatoria():void {
-    this.http.get('https://api.dicionario-aberto.net/random').subscribe((data: any) => {
+    this.util.getApi('https://api.dicionario-aberto.net/random', (data) => {
       this.chave = data.word;
-    });
+    })
   }
 
   gerarChaveComFraseAleatoria():void {
-    this.http.get('https://type.fit/api/quotes').subscribe((data: any) => {
+    this.util.getApi('https://type.fit/api/quotes', (data) => {
       const randomIndex = Math.floor(Math.random() * data.length);
       const frase = data[randomIndex].text;
 
       this.chave = frase;
-    });
+    })
   }
 }

@@ -1,9 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
+$color-theme: #0D6EFD;
+$color-theme-hover: #0B5ED7;
+$color-second: #6C757D;
+$color-second-hover: #5C636A;
+$color-text: #212529;
+$color-text-hover: #999999;
+$color-background: #FFFFFF;
+$color-background-hover: #F8F9FA;
+$color-background-border: #E9E9E9;
+
 *::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
 }
 
 *::-webkit-scrollbar-track {
@@ -11,15 +20,57 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #c7c7c7;
+    background-color: rgba($color-text, .3);
     border-radius: 20px;
+    cursor: pointer;
+}
+*::-webkit-scrollbar-thumb:hover {
+    opacity: .6;
+}
+
+a {
+    cursor: pointer;
+    color: $color-theme !important;
+    text-decoration: none !important;
+    transition: .2s;
+}
+a:hover {
+    color: $color-theme-hover !important;
+}
+ul.dropdown-menu {
+    a {
+        color: $color-text !important;
+    }
+}
+
+body {
+    background-color: $color-background;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+pre {
+    color: $color-text;
 }
 
 pre {
-    background-color: #F8F9FA;
-    padding: 12px;
+    background-color: $color-background-hover;
+    font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace !important;
+    padding: 8px;
+}
+textarea {
+    font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace !important;
 }
 
-textarea, pre {
-    font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace !important;
+small {
+    font-size: 60%;
+    opacity: .5;
 }

@@ -1,68 +1,66 @@
-<main>
+<div class="mb-4">
+
     <div class="mb-4">
-
-        <div class="mb-4">
-            <label for="chave" class="form-label">Chave</label>
-            <div class="input-group mb-1">
-                <input type="text" class="form-control" id="chave" [(ngModel)]="chave" autocapitalize="off" required>
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Gerar</button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" (click)="gerarChaveAleatoria()">Chave aleatória</a></li>
-                    <li><a class="dropdown-item" (click)="gerarChaveComPalavraAleatoria()">Palavra aleatória</a></li>
-                    <li><a class="dropdown-item" (click)="gerarChaveComFraseAleatoria()">Frase aleatória</a></li>
-                </ul>
-            </div>
-            <p><a href="#" (click)="copiarChave()">{{ chave.trim() ? 'Copiar chave' : ''}}</a></p>
+        <label for="chave" class="form-label">Chave</label>
+        <div class="input-group mb-1">
+            <input type="text" class="form-control" id="chave" [(ngModel)]="chave" autocapitalize="off" required (change)="onChangeChave()">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Gerar</button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" (click)="gerarChaveAleatoria()">Chave aleatória</a></li>
+                <li><a class="dropdown-item" (click)="gerarChaveComPalavraAleatoria()">Palavra aleatória</a></li>
+                <li><a class="dropdown-item" (click)="gerarChaveComFraseAleatoria()">Frase aleatória</a></li>
+            </ul>
         </div>
-        
-        <div class="mb-4">
-            <label for="mensagem" class="form-label">Mensagem</label>
-            <textarea class="form-control" id="mensagem" rows="10" [(ngModel)]="mensagem" required></textarea>
-            <div class="row">
-                <div class="col"><p><a href="#" (click)="colarTexto()">Colar texto</a></p></div>
-                <div class="col"><p class="text-end">{{ mensagem.length > 0 ? mensagem.length : '' }}</p></div>
-            </div>
-        </div>
+        <p><a (click)="copiarChave()">{{ chave.trim() ? 'Copiar chave' : ''}}</a></p>
+    </div>
     
-        <div class="mb-4">
-            <label for="modo" class="form-label">Modo de criptografia</label>
-            <div class="mb-1">
-                <div class="form-check" *ngFor="let modo of modoArray">
-                    <input class="form-check-input" type="radio" name="modo" id="" [(ngModel)]="modoSelecionado" [value]="modo">
-                    <label class="form-check-label" for="">
-                        {{ modo }}
-                        <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#modalModoCompleto"><span *ngIf="modo == 'Completo'" class="badge rounded-pill bg-secondary">?</span></a>
-                    </label>
-                </div>
-            </div>
-        </div>
-        
+    <div class="mb-4">
+        <label for="mensagem" class="form-label">Mensagem</label>
+        <textarea class="form-control" id="mensagem" rows="10" [(ngModel)]="mensagem" required (change)="onChangeMensagem()"></textarea>
         <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-primary me-2 mt-2" (click)="criptografar()" [disabled]="!chave.trim() || !mensagem.trim()">Criptografar</button>
-                <button type="button" class="btn btn-outline-primary me-2 mt-2" (click)="descriptografar()" [disabled]="!chave.trim() || !mensagem.trim()">Descriptografar</button>
-            </div>
-            <div class="col text-end">
-                <button type="button" class="btn btn-outline-secondary mt-2" (click)="limpar()">Limpar</button>
+            <div class="col"><p><a (click)="colarTexto()">Colar texto</a></p></div>
+            <div class="col"><p class="text-end">{{ mensagem.length > 0 ? mensagem.length : '' }}</p></div>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="modo" class="form-label">Modo de criptografia</label>
+        <div class="mb-1">
+            <div class="form-check" *ngFor="let modo of modoArray">
+                <input class="form-check-input" type="radio" name="modo" id="" [(ngModel)]="modoSelecionado" [value]="modo">
+                <label class="form-check-label" for="">
+                    {{ modo }}
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalModoCompleto"><span *ngIf="modo == 'Completo'" class="badge rounded-pill bg-secondary">?</span></a>
+                </label>
             </div>
         </div>
     </div>
     
-    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngFor="let alert of waringAlerts">
-        {{ alert }}
-        <button type="button" class="btn-close" (click)="closeAlert(alert)"></button>
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-primary me-2 mt-2" (click)="criptografar()">Criptografar</button>
+            <button type="button" class="btn btn-outline-primary me-2 mt-2" (click)="descriptografar()">Descriptografar</button>
+        </div>
+        <div class="col text-end">
+            <button type="button" class="btn btn-outline-secondary mt-2" (click)="limpar()">Limpar</button>
+        </div>
     </div>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngFor="let alert of dangerAlerts">
-        {{ alert }}
-        <button type="button" class="btn-close" (click)="closeAlert(alert)"></button>
-    </div>
-    <div class="alert alert-primary alert-dismissible fade show" role="alert" *ngFor="let alert of infoAlerts">
-        {{ alert }}
-        <button type="button" class="btn-close" (click)="closeAlert(alert)"></button>
-    </div>
+</div>
 
-    <text-block content="{{ resultado }}"></text-block>
-</main>
+<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngFor="let alert of waringAlerts">
+    {{ alert }}
+    <button type="button" class="btn-close" (click)="closeAlert(alert)"></button>
+</div>
+<div class="alert alert-danger alert-dismissible fade show" role="alert" *ngFor="let alert of dangerAlerts">
+    {{ alert }}
+    <button type="button" class="btn-close" (click)="closeAlert(alert)"></button>
+</div>
+<div class="alert alert-primary alert-dismissible fade show" role="alert" *ngFor="let alert of infoAlerts">
+    {{ alert }}
+    <button type="button" class="btn-close" (click)="closeAlert(alert)"></button>
+</div>
+
+<text-block content="{{ resultado }}"></text-block>
 
 
 <div style="margin-top: 100px;">

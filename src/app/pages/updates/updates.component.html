@@ -1,34 +1,43 @@
-<div *ngIf="errorMsg == ''">
+<div *ngIf="commitsArray.length">
     <div class="container update" *ngFor="let commit of commitsArray">
         <div class="row">
             <div class="col">
-                <span class="badge bg-primary rounded-pill" *ngIf="commit.indice == 0">Versão atual</span>
-                <h4>{{commit.versao}} <small>{{ commit.data }}</small></h4>
+                <span class="badge bg-primary rounded-pill" [ngClass]="{'bg-primary': !lastLoad, 'bg-warning': lastLoad}" *ngIf="commit.index == 0">Versão atual {{ lastLoad ? '- ' + lastLoad : '' }}</span>
+                <h4>{{commit.version}} <small>{{ commit.dateStr }}</small></h4>
                 <hr>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <pre>{{ commit.mensagem }}</pre>
+                <pre>{{ commit.message }}</pre>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <a href="{{ commit.link }}" target="_blank">Ver commit</a>
+                <a href="{{ commit.htmlUrl }}" target="_blank">Ver commit</a>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container" *ngIf="errorMsg != ''">
+<div class="container" *ngIf="commitsArray.length && errorMsg">
     <div class="row">
         <div class="col">
-            <p class="text-center">Não foi possível carregar o histórico de updates</p>
+            <div class="alert alert-warning" role="alert">
+                Não foi possível atualizar o histórico de updates
+                <pre>{{ errorMsg }}</pre>
+            </div>
         </div>
     </div>
+</div>
+
+<div class="container" *ngIf="!commitsArray.length && loaded">
     <div class="row">
         <div class="col">
-            <pre>{{ errorMsg }}</pre>
+            <div class="alert alert-danger" role="alert">
+                Não foi possível carregar o histórico de updates
+                <pre *ngIf="errorMsg">{{ errorMsg }}</pre>
+            </div>
         </div>
     </div>
 </div>

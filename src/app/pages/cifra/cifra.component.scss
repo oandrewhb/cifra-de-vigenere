@@ -1,39 +1,7 @@
-div.form-text button {
-    color: #000;
-    text-decoration: underline;
-    cursor: pointer;
-    opacity: 0.5;
-    background: none;
-    border: none;
-    padding: 0px;
-}
-div.form-text button:hover {
-    opacity: 0.7;
-}
+@import '../../../styles.scss';
 
-main p {
-    height: 12px;
-    padding-right: 5px;
-}
-
-p > a {
-    height: 12px;
-}
-
-a {
-    cursor: pointer;
-    text-decoration: none;
-    transition: .1s;
-}
-
-ul a {
-    line-height: 30px;
-}
-
-.btn-duvida {
-    padding: 0px;
-    border-radius: 50%;
-    aspect-ratio: 1/1;
-    width: 20px;
-    font-size: 10px;
+ul.list-unstyled {
+    li {
+        margin: 5px;
+    }
 }

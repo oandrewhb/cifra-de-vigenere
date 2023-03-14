@@ -1,29 +1,26 @@
+@import '../../../styles.scss';
+
+.update:not(:nth-child(1)) {
+    margin-top: 100px;
+}
 .update {
-    margin-top: 80px;
+    pre {
+        margin: 0px;
+    }
 }
 
-span {
-    font-size: 10px;
-    font-weight: 500;
+.alert-danger pre {
+    color: #842029;
+    background-color: rgba($color: #000000, $alpha: .05);
+    margin-top: 10px;
+    padding: 20px 10px;
 }
-
-small {
-    opacity: .5;
-    font-size: 15px;
-    font-weight: 500;
+.alert-warning pre {
+    color: #664D03;
+    background-color: rgba($color: #000000, $alpha: .05);
+    margin-top: 10px;
+    padding: 20px 10px;
 }
-
-hr {
-    margin: 0px;
-    margin-bottom: 10px;
-}
-
-pre {
-    margin-bottom: 0px;
-    overflow: hidden;
-    white-space: pre-wrap;
-}
-
-a {
-    text-decoration: none;
+.alert-warning {
+    margin-top: 100px;
 }

@@ -2,7 +2,7 @@
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col text-center">
-            <h1><i class="fa-solid fa-hashtag"></i> Cifra de Vigenère</h1>
+            <h1 id="logo"><i class="fa-solid fa-hashtag"></i> Cifra de Vigenère</h1>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
 <!-- fim - Menu principal -->
 
 <!-- inicio - Conteúdo -->
-<main class="container conteudo-pagina">
+<main class="container">
     <div class="row">
         <div class="col">
             <router-outlet></router-outlet>
@@ -41,13 +41,12 @@
                 </div>
                 <div class="col-md col-xs-12 text-center">
                     <p class="lead">
-                        Os artigos desse projeto foram escritos ou revisados usando <a href="https://chat.openai.com/" title="Acessar chat" target="_blank">chatGPT</a>&nbsp;<img src="../../../assets/img/chatGPT.png" alt="chatGPT logo">
+                        Os artigos desse projeto foram escritos ou revisados usando <a href="https://chat.openai.com/" title="Acessar chat" target="_blank" class="underline">chatGPT</a>&nbsp;<img src="../../../assets/img/chatGPT.png" alt="chatGPT logo" class="mini-logo">
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    <p class="text-center" *ngIf="ultimaAtualizacao != '' && linkUltimoCommit != '' && versaoAtual != ''"><a routerLink="/updates"> v1.{{ versaoAtual }}.0 ({{ ultimaAtualizacao }})</a></p>
 </footer>
-<!-- inicio - Rodapé -->
-
+<!-- fim - Rodapé -->
+<p class="text-center app-version" [ngClass]="{'bg-danger': errVersaoAtual }" *ngIf="versaoAtual != ''"><a routerLink="/updates">{{ versaoAtual }}</a></p>

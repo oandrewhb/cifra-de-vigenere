@@ -1,70 +1,65 @@
-.conteudo-pagina {
+@import '../styles.scss';
+
+main {
     max-width: 800px;
-    min-height: 40vh;
+    margin: auto;
+    min-height: 100vh;
 }
 
-footer > div {
-    display: flex;
-    align-items: center;
-    height: 50vh;
-}
-
-
-footer i,
-footer p,
-footer a {
-    color: #000;
-    opacity: 0.8;
-    transition: .2s;
-}
-
-footer i {
-    font-size: 70px;
-}
-
-footer p {
-    margin: 12px 0px;
-}
-
-footer a:hover {
-    opacity: 1;
-}
-
-footer p.text-center {
-    background-color: #0D6EFD;
-    margin: 0px;
-    padding: 8px 0px;
-}
-footer p.text-center a, footer p.text-center {
-    opacity: 1;
-    color: #ffffff;
-    text-decoration: none;
-}
-footer p.text-center a:hover {
-    opacity: .5;
+#logo {
+    color: $color-text;
 }
 
 nav {
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
+    background-color: $color-background;
+    border-bottom: 1px solid $color-background-border;
+    opacity: 90%;
+
+    .nav-link {
+        color: $color-text !important;
+    }
+    .nav-link:hover {
+        color: $color-theme !important;
+    }
+    .nav-link.active {
+        transition: 0s;
+        color: $color-theme !important;
+        border-bottom: 3px solid $color-theme;
+    }
 }
 
-.nav-link {
-    color: #000000;
+.underline {
+    text-decoration: underline !important;
 }
 
-.nav-link:hover {
-    color: #0D6EFD;
+footer {
+    padding: 140px 0px 140px 0px;
+    
+    a {
+        color: $color-second !important;
+    }
+    a:hover {
+        color: $color-second-hover !important;
+    }
+
+    .mini-logo {
+        width: 25px;
+    }
+
+    .fa-github {
+        font-size: 70px;
+    }
 }
 
-.nav-link.active {
-    border-bottom: 3px solid #0D6EFD;
-    color: #0D6EFD;
+p.app-version {
+    background-color: $color-theme;
+    margin: 0px;
+    padding: 4px;
+    a {
+        color: #FFFFFF !important;
+    }
 }
 
-p.lead {
-    font-size: 20px;
-}
-p.lead img {
-    width: 25px;
+.bg-danger {
+    background-color: #DC3545;
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Router, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
+import { UtilService } from './services/util/util.service';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +13,22 @@ export class AppComponent {
   title = 'Cifra De Vigenère';
 
   currentRoute: string = "";
-  ultimaAtualizacao: string = "";
-  linkUltimoCommit: string = "";
   versaoAtual: string = "";
+  errVersaoAtual: boolean = false;
 
-  constructor(private router: Router, private titleService: Title, private http: HttpClient) {
-    this.http.get('https://api.github.com/repos/andrewhermelino/cifra-de-vigenere/commits').subscribe((data: any) => {
-      this.versaoAtual = (data.length-1).toString() ?? "";
-      const ultimoCommit = data[0];
-
-      this.linkUltimoCommit = ultimoCommit.html_url;
-
-      const dataUltimaAtualizacao = new Date(ultimoCommit.commit.committer.date);
-
-      this.ultimaAtualizacao = stringDate(dataUltimaAtualizacao);
-    });
+  constructor(private router: Router, private titleService: Title, private util: UtilService) {
+    this.util.getProjectCommits((commits, lastLoad) => {
+      const commit = commits[0];
+      this.versaoAtual = `${commit.version} (${commit.dateStr})`;
+      if (lastLoad) {
+        this.versaoAtual += ' [Último carregado]';
+      }
+    }, (errMsg, gotCache) => {
+      if (!gotCache) {
+        this.versaoAtual = 'Não foi possível obter a versão atual'
+        this.errVersaoAtual = true;
+      }
+    })
   }
 
   ngOnInit() {

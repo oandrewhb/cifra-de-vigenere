@@ -1,25 +1,35 @@
-.textBLock {
-    background-color: #F8F9FA;
+@import '../../../styles.scss';
+
+
+.container {
+    background-color: $color-background-hover;
+    margin: 0px !important;
+    min-width: 100% !important;
 }
 
-.row.header{
-    border-bottom: 1px solid #dddddd;
+.header {
+    border-bottom: 1px solid $color-background-hover;
 }
 
-.row.content {
-    padding-top: 12px;
+.content {
+    > div {
+        padding: 0px;
+    }
 }
 
-#ngContent {
-    color: #000000;
+.vazio {
+    color: $color-text-hover;
+}
+
+pre {
+    margin: 0px;
+    padding: 16px;
+}
+
+p {
+    margin-bottom: 8px;
 }
 
 .pre-wrap {
     white-space: pre-wrap;
-}
-
-.vazio {
-    opacity: .5;
-    font-style: italic;
-    margin-bottom: 0px;
 }
