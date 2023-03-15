@@ -74,6 +74,21 @@ export class UtilService {
     });
   }
 
+  getDarkTheme(): boolean {
+    const darkTheme = this.getUtilCache('darkTheme');
+    
+    if (darkTheme == true) {
+      return true;
+    }
+    if (darkTheme == false) {
+      return false;
+    }
+    
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    return darkModeMediaQuery.matches;
+    
+  }
+
   getApi(url: string, okFun?: (data: any) => void, errFun?: (err: any) => void): void {
     this.http.get(url).subscribe(okFun, errFun);
   }

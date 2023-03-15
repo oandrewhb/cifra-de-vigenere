@@ -1,4 +1,3 @@
-@import 'colors.scss';
 
 main {
     max-width: 800px;
@@ -6,25 +5,29 @@ main {
     min-height: 50vh;
 }
 
-#logo {
-    color: $color-text;
-}
-
 nav {
-    background-color: $color-background;
-    border-bottom: 1px solid $color-background-border;
-    opacity: 90%;
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-background-border);
 
     .nav-link {
-        color: $color-text !important;
+        color: var(--color-text) !important;
     }
     .nav-link:hover {
-        color: $color-theme !important;
+        color: var(--color-theme) !important;
     }
     .nav-link.active {
         transition: 0s;
-        color: $color-theme !important;
-        border-bottom: 3px solid $color-theme;
+        color: var(--color-theme) !important;
+        border-bottom: 3px solid var(--color-theme);
+    }
+
+    .modoEscuroDiv {
+        height: 100%;
+        top: 0px;
+        right: 16px;
+        position: absolute;
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -36,10 +39,10 @@ footer {
     padding: 140px 0px 140px 0px;
     
     a {
-        color: $color-second !important;
+        color: var(--color-second) !important;
     }
     a:hover {
-        color: $color-second-hover !important;
+        color: var(--color-second-hover) !important;
     }
 
     .mini-logo {
@@ -52,7 +55,7 @@ footer {
 }
 
 p.app-version {
-    background-color: $color-theme;
+    background-color: var(--color-theme);
     margin: 0px;
     padding: 4px;
     a {

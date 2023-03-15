@@ -1,6 +1,7 @@
 import { Component, Input  } from '@angular/core';
 
 import { copy } from 'clipboard';
+import { UtilService } from 'src/app/services/util/util.service';
 
 @Component({
   selector: 'text-block',
@@ -13,7 +14,18 @@ export class TextBlockComponent {
   timeOutId: any = null;
 
   @Input() content: string = "";
-  quebrarLinha: boolean = true;
+  quebrarLinha: boolean;
+
+  constructor(private util: UtilService) {
+    const quebrarLinha = this.util.getUtilCache('quebrarLinha');
+    if (quebrarLinha === true) {
+      this.quebrarLinha = true;
+    } else if (quebrarLinha === false) {
+      this.quebrarLinha = false;
+    } else {
+      this.quebrarLinha = true;
+    }
+  }
 
   copyText() {
     copy(this.content);
@@ -26,6 +38,12 @@ export class TextBlockComponent {
     this.timeOutId = setTimeout(() => {
       this.btnText = "Copiar";
     }, 3000);
+  }
+
+  onChangeQuebrarLinha() {
+    setTimeout(() => {
+      this.util.setUtilCache('quebrarLinha', this.quebrarLinha);
+    }, 0)
   }
 
 }

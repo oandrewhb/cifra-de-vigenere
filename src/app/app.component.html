@@ -1,21 +1,27 @@
 <!-- inicio - Menu principal -->
-<div class="container-fluid mt-3">
+<div class="container-fluid pt-3 bg-menu">
     <div class="row">
         <div class="col text-center">
             <h1 id="logo"><i class="fa-solid fa-hashtag"></i> Cifra de Vigenère</h1>
         </div>
     </div>
 </div>
-<nav class="container-fluid mb-5 sticky-top">
+<nav class="container-fluid mb-5 sticky-top bg-menu">
     <div class="row">
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page" routerLink="/">Cifra</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [class]="currentRoute.includes('/artigo') ? 'active' : ''" routerLink="/artigo">Artigo</a>
-            </li>
-        </ul>
+        <div class="col">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page" routerLink="/">Cifra</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class]="currentRoute.includes('/artigo') ? 'active' : ''" routerLink="/artigo">Artigo</a>
+                </li>
+            </ul>
+            <div class="modoEscuroDiv">
+                <button *ngIf="!darkTheme" (click)="toggleTheme()" type="button" class="btn btn-light"><i class="fa-solid fa-lightbulb"></i></button>
+                <button *ngIf="darkTheme" (click)="toggleTheme()" type="button" class="btn btn-dark"><i class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
     </div>
 </nav>
 <!-- fim - Menu principal -->

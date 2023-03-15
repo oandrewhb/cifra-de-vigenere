@@ -27,7 +27,7 @@
         <label for="modo" class="form-label">Modo de criptografia</label>
         <div class="mb-1">
             <div class="form-check" *ngFor="let modo of modoArray">
-                <input class="form-check-input" type="radio" name="modo" id="" [(ngModel)]="modoSelecionado" [value]="modo">
+                <input class="form-check-input" type="radio" name="modo" id="" [(ngModel)]="modoSelecionado" [value]="modo" (click)="onChangeModo()">
                 <label class="form-check-label" for="">
                     {{ modo }}
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modalModoCompleto"><span *ngIf="modo == 'Completo'" class="badge rounded-pill bg-secondary">?</span></a>

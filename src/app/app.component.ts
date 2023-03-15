@@ -7,7 +7,7 @@ import { UtilService } from './services/util/util.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'Cifra De Vigenère';
@@ -15,8 +15,13 @@ export class AppComponent {
   currentRoute: string = "";
   versaoAtual: string = "";
   errVersaoAtual: boolean = false;
+  darkTheme: boolean = this.util.getDarkTheme();
 
   constructor(private router: Router, private titleService: Title, private util: UtilService) {
+    if (this.darkTheme) {
+      document.body.classList.add('dark-theme');
+    }
+
     this.util.getProjectCommits((commits, lastLoad) => {
       let commit = commits[0];
       if (commit.index == -1 && commits.length > 1) {
@@ -73,6 +78,12 @@ export class AppComponent {
 
       }
     });
+  }
+
+  toggleTheme() {
+    this.darkTheme = !this.darkTheme;
+    document.body.classList.toggle('dark-theme')
+    this.util.setUtilCache('darkTheme', this.darkTheme);
   }
 
 }

@@ -1,14 +1,12 @@
-@import '../../colors.scss';
-
 
 .container {
-    background-color: $color-background-hover;
+    background-color: var(--color-background-hover);
     margin: 0px !important;
     min-width: 100% !important;
 }
 
 .header {
-    border-bottom: 1px solid $color-background-hover;
+    border-bottom: 1px solid var(--color-background-hover);
 }
 
 .content {
@@ -18,7 +16,7 @@
 }
 
 .vazio {
-    color: $color-text-hover;
+    color: var(--color-text-hover);
 }
 
 pre {

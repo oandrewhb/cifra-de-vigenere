@@ -1,5 +1,123 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
-@import 'app/colors.scss';
+
+:root {
+    --color-theme: #0D6EFD;
+    --color-theme-hover: #0B5ED7;
+    --color-second: #6C757D;
+    --color-second-hover: #5C636A;
+    --color-text: #212529;
+    --color-text-hover: #999999;
+    --color-background: #FFFFFF;
+    --color-background-hover: #F8F9FA;
+    --color-background-border: #E9E9E9;
+
+    --color-bg-th-tabela-vigenere: rgba(233, 233, 233, .7);
+    --color-bg-scroll: #ACAEAF;
+}
+:root .dark-theme {
+    --color-theme: #8AB4F8;
+    --color-theme-hover: #6D95D6;
+    --color-second: #DADCE0;
+    --color-second-hover: #B1B4BA;
+    --color-text: #E8EAED;
+    --color-text-hover: #BEC0C3;
+    --color-background: #35363A;
+    --color-background-hover: #2D2E32;
+    --color-background-border: #3F4145;
+
+    --color-bg-th-tabela-vigenere: #4b4c50;
+    --color-bg-scroll: #E8EAED;
+
+    .bg-menu {
+        background-color: var(--color-background-hover);
+    }
+
+    .dropdown-menu {
+        background-color: var(--color-background-hover);
+        border: 1px solid var(--color-background-border);
+    }
+    .dropdown-item:hover {
+        background-color: var(--color-background-border);
+    }
+
+    .btn-outline-secondary {
+        border: 1px solid var(--color-second);
+        color: var(--color-second);
+        background-color: transparent !important;
+    }
+    .btn-outline-secondary:hover {
+        background-color: var(--color-second) !important;
+        color: var(--color-background)
+    }
+
+    .btn-primary {
+        background-color: var(--color-theme);
+        border: 1px solid var(--color-theme);
+        color: var(--color-text);
+    }
+    .btn-primary:hover {
+        background-color: var(--color-theme-hover);
+        border: 1px solid var(--color-theme-hover);
+    }
+
+    .btn-outline-primary {
+        border: 1px solid var(--color-theme);
+        color: var(--color-theme);
+    }
+    .btn-outline-primary:hover {
+        background-color: var(--color-theme);
+        color: var(--color-text)
+    }
+
+    .alert-warning {
+        background-color: #503d01;
+        color: #FFDA6A;
+        border: 1px solid #FFDA6A;
+        pre {
+            color: #FFDA6A !important;
+        }
+    }
+    .alert-danger {
+        background-color: #4b1015;
+        color: #EA868F;
+        border: 1px solid #EA868F;
+        pre {
+            color: #EA868F !important;
+        }
+    }
+    .alert-primary {
+        background-color: #042352;
+        color: #6EA8FE;
+        border: 1px solid #6EA8FE;
+    }
+
+    input, textarea {
+        background-color: var(--color-background-hover);
+        border: 1px solid var(--color-background-border);
+        color: var(--color-text);
+    }
+    input[type="checkbox"]:checked, input[type="radio"]:checked {
+        background-color: var(--color-theme);
+    }
+    input[type="checkbox"]:not(checked) {
+        background-color: var(--color-background-border);
+    }
+    label, em {
+        color: var(--color-text);
+    }
+    hr {
+        color: var(--color-text);
+    }
+
+    .modal-content {
+        background-color: var(--color-background);
+    }
+    .modal-header {
+        border-bottom: 1px solid var(--color-background-border);
+    }
+
+}
+
 
 *::-webkit-scrollbar {
     width: 5px;
@@ -7,11 +125,11 @@
 }
 
 *::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--color-background-hover);
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: rgba($color-text, .3);
+    background-color: var(--color-bg-scroll) !important;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -21,21 +139,21 @@
 
 a {
     cursor: pointer;
-    color: $color-theme !important;
+    color: var(--color-theme) !important;
     text-decoration: none !important;
     transition: .2s;
 }
 a:hover {
-    color: $color-theme-hover !important;
+    color: var(--color-theme-hover) !important;
 }
 ul.dropdown-menu {
     a {
-        color: $color-text !important;
+        color: var(--color-text) !important;
     }
 }
 
 body {
-    background-color: $color-background;
+    background-color: var(--color-background) !important;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -49,11 +167,11 @@ p,
 th,
 td,
 pre {
-    color: $color-text;
+    color: var(--color-text);
 }
 
 pre {
-    background-color: $color-background-hover;
+    background-color: var(--color-background-hover);
     font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace !important;
     padding: 8px;
 }
@@ -62,6 +180,6 @@ textarea {
 }
 
 small {
-    font-size: 60%;
+    font-size: 60% !important;
     opacity: .5;
 }

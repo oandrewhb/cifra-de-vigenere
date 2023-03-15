@@ -11,20 +11,27 @@ import { copy } from 'clipboard';
 })
 export class CifraComponent {
 
-  chave: string = "";
-  mensagem: string = "";
-  resultado: string = "";
+  chave: string;
+  mensagem: string;
+  resultado: string;
 
   modoArray = ['Simples', 'Completo'];
-  modoSelecionado: string = this.modoArray[1];
+  modoSelecionado: string;
 
-  waringAlerts: string[] = [];
-  dangerAlerts: string[] = [];
-  infoAlerts: string[] = [];
+  waringAlerts: string[];
+  dangerAlerts: string[];
+  infoAlerts: string[];
 
   constructor (private cifraDeVigenere: CifraDeVigenereService, private util: UtilService) {
-    this.chave = util.getUtilCache('chave') ?? "";
-    this.mensagem = util.getUtilCache('mensagem') ?? "";
+    this.chave = this.util.getUtilCache('chave') ?? '';
+    this.mensagem = this.util.getUtilCache('mensagem') ?? '';
+    this.resultado = '';
+
+    this.modoSelecionado = this.util.getUtilCache('modoSelecionado') ?? this.modoArray[1];
+
+    this.waringAlerts = [];
+    this.dangerAlerts = [];
+    this.infoAlerts = [];
   }
 
   onChangeChave():void {
@@ -33,20 +40,18 @@ export class CifraComponent {
   onChangeMensagem():void {
     this.util.setUtilCache('mensagem', this.mensagem);
   }
+  onChangeModo():void {
+    setTimeout(() => {
+      this.util.setUtilCache('modoSelecionado', this.modoSelecionado);
+    }, 0);
+  }
 
-  criptografar():void {
-    this.vigenere(true);
-  }
-  descriptografar():void {
-    this.vigenere(false);
-  }
+  criptografar():void { this.vigenere(true); }
+  descriptografar():void { this.vigenere(false); }
 
   vigenere(cifrar: boolean): void {
     this.waringAlerts = [];
     this.dangerAlerts = [];
-
-    this.util.setUtilCache('chave', this.chave);
-    this.util.setUtilCache('mensagem', this.mensagem);
 
     if (this.chave.trim().length == 0 || this.chave.trim().length == 0) {
       this.dangerAlerts.push('Informe uma chave e uma mensagem.');
@@ -67,6 +72,7 @@ export class CifraComponent {
     this.resultado = response.resultado;
     this.chave = response.chaveFormatada;
 
+    this.util.setUtilCache('chave', this.chave);
   }
 
   closeAlert(alertMsg: string):void {
@@ -97,6 +103,8 @@ export class CifraComponent {
 
     this.util.setUtilCache('chave', this.chave);
     this.util.setUtilCache('mensagem', this.mensagem);
+    this.util.setUtilCache('resultado', this.resultado);
+    this.util.setUtilCache('modoSelecionado', this.modoSelecionado);
   }
 
   gerarChaveAleatoria():void {
