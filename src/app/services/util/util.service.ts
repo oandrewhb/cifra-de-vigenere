@@ -27,7 +27,7 @@ export class UtilService {
   }
 
   getProjectCommits(okFun?: (commits: commit[], lastLoad: string) => void, errFun?: (errMsg: string, gotCache: boolean) => void): void {    
-    const url = 'https://api.github.com/repos/andrewhermelino/cifra-de-vigenere/commits?page=1&per_page=1000';
+    const url = 'https://api.github.com/repos/oandrewhb/cifra-de-vigenere/commits?page=1&per_page=1000';
     this.getApi(url, (data: any) => {
       
       const commitsArray: commit[] = [];

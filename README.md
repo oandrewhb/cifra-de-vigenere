@@ -13,7 +13,7 @@ npm install -g @angular/cli
 
 Clonar o repositório
 ```
-git clone https://github.com/andrewhermelino/cifra-de-vigenere.git
+git clone https://github.com/oandrewhb/cifra-de-vigenere.git
 ```
 
 Instalar dependências via npm

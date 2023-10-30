@@ -11,15 +11,19 @@
         <div class="col">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page" routerLink="/">Cifra</a>
+                    <a class="nav-link" [class]="currentRoute == '/' ? 'active' : ''" aria-current="page"
+                        routerLink="/">Cifra</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [class]="currentRoute.includes('/artigo') ? 'active' : ''" routerLink="/artigo">Artigo</a>
+                    <a class="nav-link" [class]="currentRoute.includes('/artigo') ? 'active' : ''"
+                        routerLink="/artigo">Artigo</a>
                 </li>
             </ul>
             <div class="modoEscuroDiv">
-                <button *ngIf="!darkTheme" (click)="toggleTheme()" type="button" class="btn btn-light"><i class="fa-solid fa-lightbulb"></i></button>
-                <button *ngIf="darkTheme" (click)="toggleTheme()" type="button" class="btn btn-dark"><i class="fa-solid fa-moon"></i></button>
+                <button *ngIf="!darkTheme" (click)="toggleTheme()" type="button" class="btn btn-light"><i
+                        class="fa-solid fa-lightbulb"></i></button>
+                <button *ngIf="darkTheme" (click)="toggleTheme()" type="button" class="btn btn-dark"><i
+                        class="fa-solid fa-moon"></i></button>
             </div>
         </div>
     </div>
@@ -42,12 +46,16 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md col-xs-12 text-center">
-                    <a href="https://github.com/andrewhermelino/cifra-de-vigenere" target="_blank" title="Repositório desse projeto"><i class="fa-brands fa-github"></i></a>
-                    <p><a href="https://github.com/andrewhermelino" target="_blank" title="Meu perfil no Github">Andrew Hermelino</a></p>
+                    <a href="https://github.com/oandrewhb/cifra-de-vigenere" target="_blank"
+                        title="Repositório desse projeto"><i class="fa-brands fa-github"></i></a>
+                    <p><a href="https://github.com/oandrewhb" target="_blank" title="Meu perfil no Github">Andrew
+                            Hermelino</a></p>
                 </div>
                 <div class="col-md col-xs-12 text-center">
                     <p class="lead">
-                        Os artigos desse projeto foram escritos ou revisados usando <a href="https://chat.openai.com/" title="Acessar chat" target="_blank" class="underline">chatGPT</a>&nbsp;<img src="../../../assets/img/chatGPT.png" alt="chatGPT logo" class="mini-logo">
+                        Os artigos desse projeto foram escritos ou revisados usando <a href="https://chat.openai.com/"
+                            title="Acessar chat" target="_blank" class="underline">chatGPT</a>&nbsp;<img
+                            src="../../../assets/img/chatGPT.png" alt="chatGPT logo" class="mini-logo">
                     </p>
                 </div>
             </div>
@@ -55,4 +63,5 @@
     </div>
 </footer>
 <!-- fim - Rodapé -->
-<p class="text-center app-version" [ngClass]="{'bg-danger': errVersaoAtual }" *ngIf="versaoAtual != ''"><a routerLink="/updates">{{ versaoAtual }}</a></p>
+<p class="text-center app-version" [ngClass]="{'bg-danger': errVersaoAtual }" *ngIf="versaoAtual != ''"><a
+        routerLink="/updates">{{ versaoAtual }}</a></p>
