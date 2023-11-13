@@ -11,14 +11,14 @@
                 <li><a class="dropdown-item" (click)="gerarChaveComFraseAleatoria()">Frase aleatória</a></li>
             </ul>
         </div>
-        <p><a (click)="copiarChave()">{{ chave.trim() ? 'Copiar chave' : ''}}</a></p>
+        <p><a *ngIf="canSaveValueOnClipboard && chave.trim()" (click)="copiarChave()">Copiar chave</a></p>
     </div>
-    
+
     <div class="mb-4">
         <label for="mensagem" class="form-label">Mensagem</label>
         <textarea class="form-control" id="mensagem" rows="10" [(ngModel)]="mensagem" required (change)="onChangeMensagem()"></textarea>
         <div class="row">
-            <div class="col"><p><a (click)="colarTexto()">Colar texto</a></p></div>
+            <div class="col"><p><a *ngIf="canReadValueFromClipboard" (click)="colarTexto()">Colar texto</a></p></div>
             <div class="col"><p class="text-end">{{ mensagem.length > 0 ? mensagem.length : '' }}</p></div>
         </div>
     </div>
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col">
             <button type="button" class="btn btn-primary me-2 mt-2" (click)="criptografar()">Criptografar</button>

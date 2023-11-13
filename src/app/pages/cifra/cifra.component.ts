@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { CifraDeVigenereService } from '../../services/cifra-de-vigenere/cifra-de-vigenere.service';
 import { UtilService } from 'src/app/services/util/util.service';
-import { copy } from 'clipboard';
+import { ClipboardService } from 'src/app/services/clip-board/clipboard.service';
 
 @Component({
   selector: 'app-cifra',
@@ -22,7 +22,10 @@ export class CifraComponent {
   dangerAlerts: string[];
   infoAlerts: string[];
 
-  constructor (private cifraDeVigenere: CifraDeVigenereService, private util: UtilService) {
+  canReadValueFromClipboard: boolean;
+  canSaveValueOnClipboard: boolean;
+
+  constructor (private cifraDeVigenere: CifraDeVigenereService, private util: UtilService, private clipboard: ClipboardService) {
     this.chave = this.util.getUtilCache('chave') ?? '';
     this.mensagem = this.util.getUtilCache('mensagem') ?? '';
     this.resultado = '';
@@ -32,6 +35,9 @@ export class CifraComponent {
     this.waringAlerts = [];
     this.dangerAlerts = [];
     this.infoAlerts = [];
+
+    this.canReadValueFromClipboard = clipboard.canReadValueFromClipboard();
+    this.canSaveValueOnClipboard = clipboard.canSaveValueOnClipboard();
   }
 
   onChangeChave():void {
@@ -82,13 +88,17 @@ export class CifraComponent {
   }
 
   copiarChave():void {
-    copy(this.chave);
+    if (this.canSaveValueOnClipboard) {
+      this.clipboard.saveValueOnClipboard(this.chave);
+    }
   }
 
   colarTexto():void {
-    navigator['clipboard'].readText().then((data) => {
-      this.mensagem = data;
-    });
+    if (this.canReadValueFromClipboard) {
+      this.clipboard.readValueFromClipboard((value) => {
+        this.mensagem = value;
+      });
+    }
   }
 
   limpar() {
@@ -111,12 +121,12 @@ export class CifraComponent {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const comprimento = 30;
     let chave = '';
-  
+
     for (let i = 0; i < comprimento; i++) {
       let indice = Math.floor(Math.random() * caracteres.length);
       chave += caracteres.charAt(indice);
     }
-  
+
     this.chave = chave;
   }
 
